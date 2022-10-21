@@ -31,6 +31,7 @@ let recursiveAsyncReadline = function () {
                 failedAttempts++
                 console.log(`Attempts left: ${maximumAttempts - failedAttempts}`)
                 if (failedAttempts == 3){
+                    console.log(`Computer's number was ${computerGuess}`)
                     console.log(`You have lost.`)
                     return readline.close() 
                 }
