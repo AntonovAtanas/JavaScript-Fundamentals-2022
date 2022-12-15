@@ -45,7 +45,8 @@ let recursiveAsyncReadline = function () {
         console.log(`Computer move is ${computerTurn}`);
 
         if (computerTurn == playerTurn) {
-            console.log(`It's a draw. You both chose ${computerTurn}. \n Current result: You: ${playerScore} - Computer: ${computerScore}`);
+            console.log(`It's a draw. You both chose ${computerTurn}.`);
+            console.log(`Current result: You: ${playerScore} - Computer: ${computerScore}`);
             recursiveAsyncReadline();
         } else if (playerTurn == rock && computerTurn == scissors || playerTurn == paper && computerTurn == rock || playerTurn == scissors && computerTurn == paper) {
             playerScore++
@@ -61,7 +62,8 @@ let recursiveAsyncReadline = function () {
                     }
                 });
             } else {
-            console.log(`You win! \n Current result is You: ${playerScore} - Computer: ${computerScore}. You need ${scoreToWin - playerScore} more to win the game`);
+            console.log(`You win!`);
+            console.log(`Current result is You: ${playerScore} - Computer: ${computerScore}. You need ${scoreToWin - playerScore} more to win the game`);
             }
             recursiveAsyncReadline();
         } else {
@@ -78,7 +80,8 @@ let recursiveAsyncReadline = function () {
                     }
                 });
             } else {
-            console.log(`Computer wins! \n Current result is You: ${playerScore} - Computer: ${computerScore}. Computer needs ${scoreToWin - computerScore} more to win the game`);
+            console.log(`Computer wins!`);
+            console.log(`Current result is You: ${playerScore} - Computer: ${computerScore}. Computer needs ${scoreToWin - computerScore} more to win the game`);
         }
             recursiveAsyncReadline();
         }
