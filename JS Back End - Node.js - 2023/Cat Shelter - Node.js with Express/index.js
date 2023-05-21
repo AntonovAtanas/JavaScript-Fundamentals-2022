@@ -20,10 +20,32 @@ app.get('/', (req, res) => {
     res.render('home')
 })
 
+// ADD BREED
 app.get('/cats/add-breed', (req, res) => {
     res.render('addBreed')
 })
 
+app.post('/cats/add-breed', async (req, res) => {
+    const breed = {
+        breed: req.body.breed
+    }
+
+    let breedsDatabase = await fs.readFile('./database/breeds.json');
+
+    if (breedsDatabase.length == 0){
+        await fs.writeFile('./database/breeds.json', JSON.stringify([breed], null, 2))
+    } else {
+        const json = JSON.parse(breedsDatabase);
+
+        json.push(breed);
+
+        await fs.writeFile('./database/breeds.json', JSON.stringify(json, null, 2));
+    }
+
+    res.redirect('/');
+})
+
+// ADD CAT
 app.get('/cats/add-cat', (req, res) => {
     res.render('addCat')
 })
@@ -36,15 +58,15 @@ app.post('/cats/add-cat', async (req, res) => {
         breed: req.body.breed
     }
 
-    let data = await fs.readFile('./database/cats.json');
+    let catsDatabase = await fs.readFile('./database/cats.json');
 
-    if (data.length == 0) {
-        //add data to json file
+    if (catsDatabase.length == 0) {
+        //add data to json file - if the database is not created (empty) - create it.
         await fs.writeFile('./database/cats.json', JSON.stringify([cat], null, 2))
     } else {
         //append data to json file
-        const json = JSON.parse(data)
-        //add json element to json object
+        const json = JSON.parse(catsDatabase)
+        //add new cat to json object
         json.push(cat);
         await fs.writeFile('./database/cats.json', JSON.stringify(json, null, 2))
     }
