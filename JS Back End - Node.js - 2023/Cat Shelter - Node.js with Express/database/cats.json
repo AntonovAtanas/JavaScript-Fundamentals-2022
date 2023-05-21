@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Celso Soares",
+    "description": "fat cat",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/220px-Welchcorgipembroke.JPG",
+    "breed": "Fluffy Cat"
+  },
+  {
+    "name": "Atanas Antonov",
+    "description": "good cat",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/220px-Welchcorgipembroke.JPG",
+    "breed": "Fluffy Cat"
+  }
+]
