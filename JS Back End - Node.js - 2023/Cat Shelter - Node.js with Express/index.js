@@ -16,6 +16,8 @@ const bodyParser = express.urlencoded({ extended: false });
 app.use(bodyParser);
 
 // Main router
+
+// HOME
 app.get('/', (req, res) => {
     res.render('home')
 })
@@ -32,7 +34,7 @@ app.post('/cats/add-breed', async (req, res) => {
 
     let breedsDatabase = await fs.readFile('./database/breeds.json');
 
-    if (breedsDatabase.length == 0){
+    if (breedsDatabase.length == 0) {
         await fs.writeFile('./database/breeds.json', JSON.stringify([breed], null, 2))
     } else {
         const json = JSON.parse(breedsDatabase);
@@ -46,8 +48,9 @@ app.post('/cats/add-breed', async (req, res) => {
 })
 
 // ADD CAT
-app.get('/cats/add-cat', (req, res) => {
-    res.render('addCat')
+app.get('/cats/add-cat', async (req, res) => {
+    const breeds = JSON.parse(await fs.readFile('./database/breeds.json', 'utf-8'));
+    res.render('addCat', { breeds });
 })
 
 app.post('/cats/add-cat', async (req, res) => {
