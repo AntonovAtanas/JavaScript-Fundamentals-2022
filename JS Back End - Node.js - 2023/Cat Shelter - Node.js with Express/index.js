@@ -18,8 +18,9 @@ app.use(bodyParser);
 // Main router
 
 // HOME
-app.get('/', (req, res) => {
-    res.render('home')
+app.get('/', async (req, res) => {
+    const cats = JSON.parse(await fs.readFile('./database/cats.json'));
+    res.render('home', { cats })
 })
 
 // ADD BREED
