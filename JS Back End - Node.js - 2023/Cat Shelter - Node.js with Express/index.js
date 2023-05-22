@@ -19,7 +19,7 @@ app.use(bodyParser);
 
 // HOME
 app.get('/', async (req, res) => {
-    const cats = JSON.parse(await fs.readFile('./database/cats.json'));
+    const cats = JSON.parse(await fs.readFile('./database/cats.json', 'utf-8'));
     res.render('home', { cats })
 })
 
@@ -62,17 +62,17 @@ app.post('/cats/add-cat', async (req, res) => {
         breed: req.body.breed
     }
 
-    let catsDatabase = await fs.readFile('./database/cats.json');
+    let catsDatabase = JSON.parse(await fs.readFile('./database/cats.json', 'utf-8'));
+
+    cat.id = catsDatabase.length + 1;
 
     if (catsDatabase.length == 0) {
         //add data to json file - if the database is not created (empty) - create it.
         await fs.writeFile('./database/cats.json', JSON.stringify([cat], null, 2))
     } else {
-        //append data to json file
-        const json = JSON.parse(catsDatabase)
-        //add new cat to json object
-        json.push(cat);
-        await fs.writeFile('./database/cats.json', JSON.stringify(json, null, 2))
+        //add new cat to the database
+        catsDatabase.push(cat);
+        await fs.writeFile('./database/cats.json', JSON.stringify(catsDatabase, null, 2))
     }
 
     res.redirect('/');
