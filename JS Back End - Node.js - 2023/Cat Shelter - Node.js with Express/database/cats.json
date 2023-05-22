@@ -1,14 +1,7 @@
 [
   {
-    "name": "Atanas Antonov",
-    "description": "fat cat",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/220px-Welchcorgipembroke.JPG",
-    "breed": "Welsh Corgi",
-    "id": 1
-  },
-  {
-    "name": "Test Cat",
-    "description": "33333333333333333333333333333",
+    "name": "Gera",
+    "description": "funny cat",
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/220px-Welchcorgipembroke.JPG",
     "breed": "Egyptian",
     "id": 2

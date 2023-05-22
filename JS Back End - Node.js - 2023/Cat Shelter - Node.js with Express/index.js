@@ -79,7 +79,7 @@ app.post('/cats/add-cat', async (req, res) => {
 })
 
 // CAT DETAILS
-app.get('/cat/:id', async (req, res) => {
+app.get('/edit/cat/:id', async (req, res) => {
     const id = req.params.id;
     let cats = JSON.parse(await fs.readFile('./database/cats.json', 'utf-8'));
     const breeds = JSON.parse(await fs.readFile('./database/breeds.json', 'utf-8'));
@@ -88,8 +88,8 @@ app.get('/cat/:id', async (req, res) => {
     res.render('editCat', { cat, breeds })
 });
 
-app.post('/cat/:id', async (req, res) => {
-    const id = req.params.id -1;
+app.post('/edit/cat/:id', async (req, res) => {
+    const id = req.params.id - 1;
 
     let catsDatabase = JSON.parse(await fs.readFile('./database/cats.json', 'utf-8'));
 
@@ -102,6 +102,29 @@ app.post('/cat/:id', async (req, res) => {
 
     res.redirect('/');
 
+})
+
+// SHELTER CAT
+app.get('/shelter/cat/:id', async (req, res) => {
+    const id = req.params.id - 1;
+
+    const catsDatabase = JSON.parse(await fs.readFile('./database/cats.json', 'utf-8'));
+
+    const cat = catsDatabase[id]
+
+    res.render('catShelter', { cat })
+})
+
+app.post('/shelter/cat/:id', async (req, res) =>{
+    const id = req.params.id - 1;
+
+    const catsDatabase = JSON.parse(await fs.readFile('./database/cats.json', 'utf-8'));
+
+    catsDatabase.splice(id, 1);
+
+    await fs.writeFile('./database/cats.json', JSON.stringify(catsDatabase, null, 2));
+
+    res.redirect('/');
 })
 
 app.listen(5000, () => {
