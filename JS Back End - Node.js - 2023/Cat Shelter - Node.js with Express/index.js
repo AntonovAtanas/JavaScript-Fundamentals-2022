@@ -21,12 +21,12 @@ app.use(bodyParser);
 app.get('/', async (req, res) => {
     const cats = JSON.parse(await fs.readFile('./database/cats.json', 'utf-8'));
     res.render('home', { cats })
-})
+});
 
 // ADD BREED
 app.get('/cats/add-breed', (req, res) => {
     res.render('addBreed')
-})
+});
 
 app.post('/cats/add-breed', async (req, res) => {
     const breed = {
@@ -46,7 +46,7 @@ app.post('/cats/add-breed', async (req, res) => {
     }
 
     res.redirect('/');
-})
+});
 
 // ADD CAT
 app.get('/cats/add-cat', async (req, res) => {
@@ -77,6 +77,16 @@ app.post('/cats/add-cat', async (req, res) => {
 
     res.redirect('/');
 })
+
+// CAT DETAILS
+app.get('/cat/:id', async (req, res) => {
+    const id = req.params.id;
+    let cats = JSON.parse(await fs.readFile('./database/cats.json', 'utf-8'));
+    const breeds = JSON.parse(await fs.readFile('./database/breeds.json', 'utf-8'));
+
+    const cat = cats[id - 1];
+    res.render('editCat', { cat, breeds })
+});
 
 
 app.listen(5000, () => {
