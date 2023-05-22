@@ -88,6 +88,21 @@ app.get('/cat/:id', async (req, res) => {
     res.render('editCat', { cat, breeds })
 });
 
+app.post('/cat/:id', async (req, res) => {
+    const id = req.params.id -1;
+
+    let catsDatabase = JSON.parse(await fs.readFile('./database/cats.json', 'utf-8'));
+
+    catsDatabase[id].name = req.body.name;
+    catsDatabase[id].description = req.body.description;
+    catsDatabase[id].image = req.body.image;
+    catsDatabase[id].breed = req.body.breed;
+
+    await fs.writeFile('./database/cats.json', JSON.stringify(catsDatabase, null, 2));
+
+    res.redirect('/');
+
+})
 
 app.listen(5000, () => {
     console.log('Server is running at port 5000...')
