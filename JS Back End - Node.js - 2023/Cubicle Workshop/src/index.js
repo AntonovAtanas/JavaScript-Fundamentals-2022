@@ -15,7 +15,7 @@ expressConfig(app);
 handlebarsConfig(app);
 
 app.use(homeController);
-app.use(cubeController);
+app.use('/cube', cubeController);
 app.use('*', error404);
 
 
