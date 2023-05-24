@@ -18,7 +18,7 @@ router.post('/add', (req, res) => {
         name,
         description,
         imageUrl,
-        difficultyLevel
+        difficultyLevel: Number(difficultyLevel)
     });
 
     res.redirect('/');
