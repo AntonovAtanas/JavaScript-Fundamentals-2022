@@ -9,6 +9,10 @@ exports.add = (newCube) => {
         ...newCube
     }
     db.push(cube);
-    
-    console.log(db);
+};
+
+exports.getAll = () => {
+    let cubes = db.slice();
+
+    return cubes;
 }
