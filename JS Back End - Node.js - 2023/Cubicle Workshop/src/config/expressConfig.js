@@ -1,10 +1,10 @@
 const express = require('express');
 
-function expressConfig(app){
+function expressConfig(app) {
     // add static files middleware loader - initial images, css 
-    app.use(express.static('../public'))
+    app.use(express.static('src/public'))
     // add body parser middleware
-    app.use(express.urlencoded({extended: false}))
+    app.use(express.urlencoded({ extended: false }))
 }
 
 module.exports = expressConfig;
