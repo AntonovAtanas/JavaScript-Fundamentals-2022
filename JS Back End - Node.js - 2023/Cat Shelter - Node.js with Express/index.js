@@ -19,8 +19,14 @@ app.use(bodyParser);
 
 // HOME
 app.get('/', async (req, res) => {
-    const cats = JSON.parse(await fs.readFile('./database/cats.json', 'utf-8'));
-    res.render('home', { cats })
+    let cats = JSON.parse(await fs.readFile('./database/cats.json', 'utf-8'));
+
+    if (req.query['search']) {
+        cats = cats.filter(cat => cat.name.toLowerCase().includes(req.query['search'].toLowerCase()));
+        res.render('home', { cats })
+    } else {
+        res.render('home', { cats })
+    }
 });
 
 // ADD BREED
@@ -101,8 +107,7 @@ app.post('/edit/cat/:id', async (req, res) => {
     await fs.writeFile('./database/cats.json', JSON.stringify(catsDatabase, null, 2));
 
     res.redirect('/');
-
-})
+});
 
 // SHELTER CAT
 app.get('/shelter/cat/:id', async (req, res) => {
@@ -113,9 +118,9 @@ app.get('/shelter/cat/:id', async (req, res) => {
     const cat = catsDatabase[id]
 
     res.render('catShelter', { cat })
-})
+});
 
-app.post('/shelter/cat/:id', async (req, res) =>{
+app.post('/shelter/cat/:id', async (req, res) => {
     const id = req.params.id - 1;
 
     const catsDatabase = JSON.parse(await fs.readFile('./database/cats.json', 'utf-8'));
@@ -125,7 +130,9 @@ app.post('/shelter/cat/:id', async (req, res) =>{
     await fs.writeFile('./database/cats.json', JSON.stringify(catsDatabase, null, 2));
 
     res.redirect('/');
-})
+});
+
+// SEARCH 
 
 app.listen(5000, () => {
     console.log('Server is running at port 5000...')

@@ -5,5 +5,26 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/220px-Welchcorgipembroke.JPG",
     "breed": "Egyptian",
     "id": 2
+  },
+  {
+    "name": "Celso Soares",
+    "description": "funny cat",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/220px-Welchcorgipembroke.JPG",
+    "breed": "Welsh Corgi",
+    "id": 2
+  },
+  {
+    "name": "Atanas Antonov",
+    "description": "boring cat",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/220px-Welchcorgipembroke.JPG",
+    "breed": "Egyptian",
+    "id": 3
+  },
+  {
+    "name": "Gera Georgieva",
+    "description": "result",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Welchcorgipembroke.JPG/220px-Welchcorgipembroke.JPG",
+    "breed": "Welsh Corgi",
+    "id": 4
   }
 ]
