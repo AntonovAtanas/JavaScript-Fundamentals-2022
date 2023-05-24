@@ -20,8 +20,15 @@ router.post('/add', (req, res) => {
         imageUrl,
         difficultyLevel
     });
-    
+
     res.redirect('/');
-})
+});
+
+router.get('/details/:id', (req, res) => {
+    const id = req.params.id;
+    const cube = cubeManager.getCube(id);
+
+    res.render('details', { cube })
+});
 
 module.exports = router;

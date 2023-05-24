@@ -16,3 +16,9 @@ exports.getAll = () => {
 
     return cubes;
 }
+
+exports.getCube = (id) => {
+    const cube = db.find(cube => cube.id === id);
+
+    return cube;
+}
