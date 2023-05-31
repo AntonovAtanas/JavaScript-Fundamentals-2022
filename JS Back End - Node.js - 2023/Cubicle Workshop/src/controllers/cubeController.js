@@ -6,7 +6,7 @@ router.get('/add', (req, res) => {
     res.render('create');
 });
 
-router.post('/add', (req, res) => {
+router.post('/add', async (req, res) => {
     const {
         name,
         description,
@@ -14,7 +14,7 @@ router.post('/add', (req, res) => {
         difficultyLevel
     } = req.body;
 
-    cubeManager.add({
+    await cubeManager.add({
         name,
         description,
         imageUrl,
