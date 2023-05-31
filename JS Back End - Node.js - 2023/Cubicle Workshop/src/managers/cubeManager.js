@@ -24,7 +24,7 @@ exports.getAll = async (search, from, to) => {
 }
 
 exports.getCube = (id) => {
-    const cube = db.find(cube => cube.id === id);
+    const cube = Cube.findById(id);
 
     return cube;
 }

@@ -24,9 +24,9 @@ router.post('/add', async (req, res) => {
     res.redirect('/');
 });
 
-router.get('/details/:id', (req, res) => {
+router.get('/details/:id', async (req, res) => {
     const id = req.params.id;
-    const cube = cubeManager.getCube(id);
+    const cube = await cubeManager.getCube(id).lean();
 
     res.render('details', { cube })
 });
