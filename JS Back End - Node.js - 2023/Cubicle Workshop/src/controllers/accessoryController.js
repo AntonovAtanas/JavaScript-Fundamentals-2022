@@ -1,8 +1,18 @@
 const router = require('express').Router();
 
-router.get('/accessory', (req, res) => {
+const accessoryManager = require('../managers/accessoryManager');
 
-    res.render('./accessory/createAccessory')
-})
+router.get('/create', (req, res) => {
+
+    res.render('./accessory/createAccessory');
+});
+
+router.post('/create', (req, res) => {
+    const newAccessory = {...req.body};
+
+    accessoryManager.addAccessory(newAccessory)
+
+    res.redirect('/');
+});
 
 module.exports = router;
