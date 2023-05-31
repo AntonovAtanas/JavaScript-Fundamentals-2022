@@ -1,12 +1,13 @@
 const router = require('express').Router();
 
 const cubeManager = require('../managers/cubeManager');
+const accessoryManager = require('../managers/accessoryManager');
 
 router.get('/add', (req, res) => {
     res.render('create');
 });
 
-router.post('/add', async (req, res) => {
+router.post('/add', (req, res) => {
     const {
         name,
         description,
@@ -14,7 +15,7 @@ router.post('/add', async (req, res) => {
         difficultyLevel
     } = req.body;
 
-    await cubeManager.add({
+    cubeManager.add({
         name,
         description,
         imageUrl,
@@ -27,8 +28,9 @@ router.post('/add', async (req, res) => {
 router.get('/details/:id', async (req, res) => {
     const id = req.params.id;
     const cube = await cubeManager.getCube(id).lean();
-
-    res.render('details', { cube })
+    const accessories = await accessoryManager.getAll().lean();
+    
+    res.render('details', { cube, accessories })
 });
 
 module.exports = router;

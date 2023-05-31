@@ -1,8 +1,8 @@
 const Cube = require('../models/Cube');
 
-exports.add = (newCube) => {
+exports.add = async (newCube) => {
 
-    Cube.create(newCube)
+    await Cube.create(newCube)
 };
 
 exports.getAll = (search, from, to) => {
