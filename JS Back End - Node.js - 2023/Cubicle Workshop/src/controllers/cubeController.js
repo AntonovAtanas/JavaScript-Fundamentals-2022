@@ -29,8 +29,10 @@ router.get('/details/:id', async (req, res) => {
     const id = req.params.id;
     const cube = await cubeManager.getCube(id).lean();
     const accessories = await accessoryManager.getAll().lean();
+
+    const hasAccessories = accessories.length > 0;
     
-    res.render('details', { cube, accessories })
+    res.render('details', { cube, accessories, hasAccessories })
 });
 
 module.exports = router;

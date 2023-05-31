@@ -9,6 +9,7 @@
   </div>
   <h2>Accessories</h2>
   <div class="accessories">
+    {{#if hasAccessories}}
     {{#each accessories}}
     <div class="accessory">
       <img src="{{imageUrl}}" alt="{{name}}">
@@ -16,6 +17,8 @@
       <p>{{description}}</p>
     </div>
     {{/each}}
+    {{else}}
     <h3 class="italic">This cube has no accessories yet...</h3>
+    {{/if}}
   </div>
 </main>
