@@ -26,7 +26,16 @@ exports.getAll = (search, from, to) => {
 }
 
 exports.getCube = (id) => {
-    const cube = Cube.findById(id);
+    const cube = Cube.findById(id).populate('accessories');
 
     return cube;
+}
+
+exports.attachAccessory = async (cubeId, accessoryId) => {
+
+    //Cube.findByIdAndUpdate(cubeId, { $push: { accessories: accessoryId } }) - MongoDB query
+
+    const cube = await Cube.findById(cubeId);
+    cube.accessories.push(accessoryId);
+    await cube.save()
 }

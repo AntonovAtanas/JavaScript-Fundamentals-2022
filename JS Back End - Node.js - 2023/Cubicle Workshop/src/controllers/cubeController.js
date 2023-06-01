@@ -28,11 +28,30 @@ router.post('/add', (req, res) => {
 router.get('/details/:id', async (req, res) => {
     const id = req.params.id;
     const cube = await cubeManager.getCube(id).lean();
+
+    const hasAccessories = cube.accessories.length > 0;
+
+    res.render('details', { cube, hasAccessories })
+});
+
+router.get('/attach/:id', async (req, res) => {
+    const cubeId = req.params.id;
+
+    const cube = await cubeManager.getCube(cubeId).lean();
     const accessories = await accessoryManager.getAll().lean();
 
     const hasAccessories = accessories.length > 0;
-    
-    res.render('details', { cube, accessories, hasAccessories })
+
+    res.render('./accessory/attachAccessory', { cube, accessories, hasAccessories });
 });
+
+router.post('/attach/:id', (req, res) => {
+    const cubeId = req.params.id;
+    const accessoryId = req.body.accessory;
+
+    cubeManager.attachAccessory(cubeId, accessoryId);
+
+    res.redirect('/')
+})
 
 module.exports = router;

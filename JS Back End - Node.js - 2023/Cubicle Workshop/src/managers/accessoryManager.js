@@ -7,3 +7,4 @@ exports.addAccessory = async (newAccessory) => {
 exports.getAll = () => {
     return Accessory.find();
 }
+
