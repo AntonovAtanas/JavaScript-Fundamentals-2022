@@ -23,18 +23,19 @@ router.post('/add', (req, res) => {
         creatorId: req.user._id
     });
 
-    
-
     res.redirect('/');
 });
 
 router.get('/details/:id', async (req, res) => {
     const id = req.params.id;
+    const userId = req.user?._id
+
     const cube = await cubeManager.getCube(id).lean();
 
-    const hasAccessories = cube.accessories.length > 0;
+    const isCreator = userId === cube.creatorId.toString();
 
-    res.render('details', { cube, hasAccessories })
+    const hasAccessories = cube.accessories.length > 0;
+    res.render('details', { cube, hasAccessories, isCreator })
 });
 
 router.get('/attach/:id', async (req, res) => {
