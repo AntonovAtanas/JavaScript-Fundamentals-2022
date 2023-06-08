@@ -15,6 +15,9 @@ exports.auth = async (req, res, next) => {
             // attach user data to every next request
             req.user = user;
 
+            // attach local variable that user is authenticated
+            res.locals.isAuthenticated = true;
+
             next();
         } catch (error) {
             // has token but it is not valid
