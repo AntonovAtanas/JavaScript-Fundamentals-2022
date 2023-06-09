@@ -67,4 +67,14 @@ router.get('/edit/:id', async (req, res) => {
     res.render('./cube/editCube', { cube, options })
 })
 
+router.post('/edit/:id', (req, res) => {
+    const cubeId = req.params.id;
+
+    const cubeData = req.body;
+
+    cubeManager.updateCube(cubeId, cubeData);
+
+    res.redirect('/')
+})
+
 module.exports = router;
