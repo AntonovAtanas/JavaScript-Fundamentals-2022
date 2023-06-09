@@ -63,9 +63,9 @@ router.get('/edit/:id', async (req, res) => {
     const cube = await cubeManager.getCube(req.params.id).lean();
 
     let options = optionsGenerator(cube.difficultyLevel)
-    
+
     res.render('./cube/editCube', { cube, options })
-})
+});
 
 router.post('/edit/:id', (req, res) => {
     const cubeId = req.params.id;
@@ -75,6 +75,14 @@ router.post('/edit/:id', (req, res) => {
     cubeManager.updateCube(cubeId, cubeData);
 
     res.redirect('/');
+});
+
+router.get('/delete/:id', async (req, res) => {
+    const cube = await cubeManager.getCube(req.params.id).lean();
+
+    const options = optionsGenerator(cube.difficultyLevel);
+
+    res.render('./cube/deleteCube', { cube, options });
 })
 
 module.exports = router;
