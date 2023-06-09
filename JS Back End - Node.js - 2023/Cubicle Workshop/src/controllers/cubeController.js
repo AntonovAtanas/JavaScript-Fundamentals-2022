@@ -74,7 +74,7 @@ router.post('/edit/:id', (req, res) => {
 
     cubeManager.updateCube(cubeId, cubeData);
 
-    res.redirect('/');
+    res.redirect(`/cube/details/${cubeId}`);
 });
 
 router.get('/delete/:id', async (req, res) => {
