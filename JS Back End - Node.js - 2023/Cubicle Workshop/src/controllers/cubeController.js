@@ -74,7 +74,7 @@ router.post('/edit/:id', (req, res) => {
 
     cubeManager.updateCube(cubeId, cubeData);
 
-    res.redirect('/')
+    res.redirect('/');
 })
 
 module.exports = router;
