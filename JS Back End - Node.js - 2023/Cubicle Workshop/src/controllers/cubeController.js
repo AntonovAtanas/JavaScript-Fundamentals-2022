@@ -83,6 +83,14 @@ router.get('/delete/:id', async (req, res) => {
     const options = optionsGenerator(cube.difficultyLevel);
 
     res.render('./cube/deleteCube', { cube, options });
+});
+
+router.post('/delete/:id', (req, res) => {
+    const cubeId = req.params.id;
+
+    cubeManager.deleteCube(cubeId);
+
+    res.redirect('/')
 })
 
 module.exports = router;
