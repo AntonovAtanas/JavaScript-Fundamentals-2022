@@ -2,9 +2,10 @@ const router = require('express').Router();
 
 const cubeManager = require('../managers/cubeManager');
 const accessoryManager = require('../managers/accessoryManager');
+const { optionsGenerator } = require('../utils/optionsGenerator');
 
 router.get('/add', (req, res) => {
-    res.render('create');
+    res.render('./cube/create');
 });
 
 router.post('/add', (req, res) => {
@@ -35,7 +36,7 @@ router.get('/details/:id', async (req, res) => {
     const isCreator = userId === cube.creatorId.toString();
 
     const hasAccessories = cube.accessories.length > 0;
-    res.render('details', { cube, hasAccessories, isCreator })
+    res.render('./cube/details', { cube, hasAccessories, isCreator })
 });
 
 router.get('/attach/:id', async (req, res) => {
@@ -56,6 +57,14 @@ router.post('/attach/:id', (req, res) => {
     cubeManager.attachAccessory(cubeId, accessoryId);
 
     res.redirect('/')
+});
+
+router.get('/edit/:id', async (req, res) => {
+    const cube = await cubeManager.getCube(req.params.id).lean();
+
+    let options = optionsGenerator(cube.difficultyLevel)
+    
+    res.render('./cube/editCube', { cube, options })
 })
 
 module.exports = router;
