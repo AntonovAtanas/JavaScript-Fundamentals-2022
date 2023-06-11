@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const userManager = require('../managers/userManager');
 
+const { errorMessage } = require('../utils/errorMessageHandler');
+
 router.get('/register', (req, res) => {
     res.render('./user/registerPage');
 });
@@ -16,12 +18,7 @@ router.post('/register', async (req, res) => {
     try {
         await userManager.register({ username, password });
     } catch (error) {
-        if (error.code == 11000){
-            return res.render('./user/registerPage', { errorMessage: ['Username already taken'] })
-        }
-        const errorMessage = Object.values(error.errors)
-
-        return res.render('./user/registerPage', { errorMessage })
+        return res.render('./user/registerPage', errorMessage(req, error));
     }
 
     res.redirect('/');
