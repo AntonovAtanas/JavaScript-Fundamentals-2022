@@ -26,6 +26,7 @@ exports.auth = async (req, res, next) => {
         }
     } else {
         // does not have token
+        
         next();
     }
 }
@@ -35,4 +36,6 @@ exports.isAuth = (req, res, next) => {
     if (!req.user){
         return res.redirect('/user/login');
     }
+
+    next();
 }

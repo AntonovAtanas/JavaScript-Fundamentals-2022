@@ -1,4 +1,9 @@
 <main>
+    {{#if errorMessage}}
+    <div id="notifications">
+        <p id="notification-message">{{errorMessage}}</p>
+    </div>
+    {{/if}}
     <h1>Register Form</h1>
     <div class="form">
         <form method="POST">

@@ -9,12 +9,19 @@ router.post('/register', async (req, res) => {
 
     const { username, password, repeatPassword } = req.body;
 
-    if (password !== repeatPassword) {
-        res.redirect('/404')
-        throw new Error('Passwords do not match');
+    if (password !== repeatPassword || !password || !repeatPassword) {
+        return res.render('./user/registerPage', { errorMessage: 'Passwords do not match' })
     }
 
-    await userManager.register({ username, password });
+    try {
+        await userManager.register({ username, password });
+    } catch (error) {
+        console.log(error)
+        return res.render('./user/registerPage', { errorMessage: error })
+    }
+
+
+
     res.redirect('/');
 });
 
