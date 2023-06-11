@@ -9,7 +9,12 @@ const userSchema = new mongoose.Schema({
         minLength: [5, 'Username too short'],
         match: [/^[A-Za-z0-9]+/, 'Only letters and numbers allowed']
     },
-    password: String
+    password: {
+        type: String,
+        required: [true, 'Password is required'],
+        match: [/^[A-Za-z0-9]+/, 'Only letters and numbers allowed'],
+        minLength: [8, 'Password too short']
+    }
 });
 
 userSchema.pre('save', async function() {

@@ -1,8 +1,10 @@
 <main>
     {{#if errorMessage}}
+    {{#each errorMessage}}
     <div id="notifications">
-        <p id="notification-message">{{errorMessage}}</p>
+        <p id="notification-message">{{this}}</p>
     </div>
+    {{/each}}
     {{/if}}
     <h1>Register Form</h1>
     <div class="form">

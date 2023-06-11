@@ -9,18 +9,20 @@ router.post('/register', async (req, res) => {
 
     const { username, password, repeatPassword } = req.body;
 
-    if (password !== repeatPassword || !password || !repeatPassword) {
-        return res.render('./user/registerPage', { errorMessage: 'Passwords do not match' })
+    if (password !== repeatPassword) {
+        return res.render('./user/registerPage', { errorMessage: ['Passwords do not match'] })
     }
 
     try {
         await userManager.register({ username, password });
     } catch (error) {
-        console.log(error)
-        return res.render('./user/registerPage', { errorMessage: error })
+        if (error.code == 11000){
+            return res.render('./user/registerPage', { errorMessage: ['Username already taken'] })
+        }
+        const errorMessage = Object.values(error.errors)
+
+        return res.render('./user/registerPage', { errorMessage })
     }
-
-
 
     res.redirect('/');
 });
