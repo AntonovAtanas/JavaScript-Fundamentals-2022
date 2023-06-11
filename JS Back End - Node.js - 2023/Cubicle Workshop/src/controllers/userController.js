@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const userManager = require('../managers/userManager');
 
-const { errorMessage } = require('../utils/errorMessageHandler');
+const { errorMessageHandler } = require('../utils/errorMessageHandler');
 
 router.get('/register', (req, res) => {
     res.render('./user/registerPage');
@@ -18,7 +18,7 @@ router.post('/register', async (req, res) => {
     try {
         await userManager.register({ username, password });
     } catch (error) {
-        return res.render('./user/registerPage', errorMessage(req, error));
+        return res.render('./user/registerPage', errorMessageHandler(error));
     }
 
     res.redirect('/');
@@ -32,11 +32,21 @@ router.post('/login', async (req, res) => {
 
     const { username, password } = req.body;
 
-    const token = await userManager.login(username, password);
+    if (!username) {
+        return res.render('./user/loginPage', errorMessageHandler('Please fill your username'));
+    } else if (!password){
+        return res.render('./user/loginPage', errorMessageHandler('Please fill your password'));
+    }
 
-    res.cookie('auth', token, { httpOnly: true });
+    try {
+        const token = await userManager.login(username, password);    
+        
+        res.cookie('auth', token, { httpOnly: true });
 
-    res.redirect('/');
+        res.redirect('/');
+    } catch (error) {
+        return res.render('./user/loginPage', errorMessageHandler(error.message));
+    }
 });
 
 router.get('/logout', (req, res) => {

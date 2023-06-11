@@ -1,7 +1,6 @@
 const User = require('../models/User');
 const jwtoken = require('../lib/jwtoken');
 const bcrypt = require('bcrypt');
-const { MongooseError } = require('mongoose');
 
 const { secret } = require('../config/constants')
 
@@ -11,13 +10,13 @@ exports.login = async (username, password) => {
     const user = await User.findOne({ username }).lean();
 
     if (!user) {
-        throw new MongooseError('Username or password do not match');
+        throw new Error('Username not found!');
     };
 
     const isValid = await bcrypt.compare(password, user.password);
 
     if (!isValid) {
-        throw new MongooseError('Username or password do not match');
+        throw new Error('Password missmatch!');
     };
 
     const payload = {
