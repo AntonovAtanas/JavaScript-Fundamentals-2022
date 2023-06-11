@@ -5,12 +5,13 @@ const accessoryManager = require('../managers/accessoryManager');
 
 const { isAuth } = require('../middlewares/authMiddleware');
 const { optionsGenerator } = require('../utils/optionsGenerator');
+const { errorMessageHandler } = require('../utils/errorMessageHandler');
 
 router.get('/add', isAuth, (req, res) => {
     res.render('./cube/create');
 });
 
-router.post('/add', isAuth, (req, res) => {
+router.post('/add', isAuth, async (req, res) => {
     const {
         name,
         description,
@@ -18,13 +19,17 @@ router.post('/add', isAuth, (req, res) => {
         difficultyLevel
     } = req.body;
 
-    cubeManager.add({
-        name,
-        description,
-        imageUrl,
-        difficultyLevel: Number(difficultyLevel),
-        creatorId: req.user._id
-    });
+    try {
+        await cubeManager.add({
+            name,
+            description,
+            imageUrl,
+            difficultyLevel: Number(difficultyLevel),
+            creatorId: req.user._id
+        });
+    } catch (error) {
+        return res.render('./cube/create', errorMessageHandler(error))
+    }
 
     res.redirect('/');
 });

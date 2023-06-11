@@ -1,9 +1,6 @@
 const Cube = require('../models/Cube');
 
-exports.add = async (newCube) => {
-
-    await Cube.create(newCube)
-};
+exports.add = (newCube) => Cube.create(newCube)
 
 exports.getAll = (search, from, to) => {
     let cubes = Cube.find();
