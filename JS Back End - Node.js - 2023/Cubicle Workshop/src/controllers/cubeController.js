@@ -54,54 +54,83 @@ router.get('/details/:id', async (req, res) => {
 
 router.get('/attach/:id', isAuth, async (req, res) => {
     const cubeId = req.params.id;
+    let cube
+    let accessories
 
-    const cube = await cubeManager.getCube(cubeId).lean();
-    const accessories = await accessoryManager.getAll().lean();
+    try {
+        cube = await cubeManager.getCube(cubeId).lean();
+        accessories = await accessoryManager.getAll().lean();
+    } catch (error) {
+        return res.redirect('/404')
+    }
 
     const hasAccessories = accessories.length > 0;
 
     res.render('./accessory/attachAccessory', { cube, accessories, hasAccessories });
 });
 
-router.post('/attach/:id', isAuth, (req, res) => {
+router.post('/attach/:id', isAuth, async (req, res) => {
     const cubeId = req.params.id;
     const accessoryId = req.body.accessory;
 
-    cubeManager.attachAccessory(cubeId, accessoryId);
-
+    try {
+        await cubeManager.attachAccessory(cubeId, accessoryId);
+    } catch (error) {
+        return res.redirect('/404');
+    }
     res.redirect('/')
 });
 
 router.get('/edit/:id', isAuth, async (req, res) => {
-    const cube = await cubeManager.getCube(req.params.id).lean();
+
+    let cube;
+
+    try {
+        cube = await cubeManager.getCube(req.params.id).lean();
+    } catch (error) {
+        return res.redirect('/404');
+    }
 
     let options = optionsGenerator(cube.difficultyLevel)
 
     res.render('./cube/editCube', { cube, options })
 });
 
-router.post('/edit/:id', isAuth, (req, res) => {
+router.post('/edit/:id', isAuth, async (req, res) => {
     const cubeId = req.params.id;
-
     const cubeData = req.body;
 
-    cubeManager.updateCube(cubeId, cubeData);
+    try {
+        await cubeManager.updateCube(cubeId, cubeData);
+    } catch (error) {
+        return res.redirect('/404');
+    }
 
     res.redirect(`/cube/details/${cubeId}`);
 });
 
 router.get('/delete/:id', isAuth, async (req, res) => {
-    const cube = await cubeManager.getCube(req.params.id).lean();
+    let cube;
+
+    try {
+        cube = await cubeManager.getCube(req.params.id).lean();
+    } catch (error) {
+        return res.status(404).redirect('/404')
+    }
 
     const options = optionsGenerator(cube.difficultyLevel);
 
     res.render('./cube/deleteCube', { cube, options });
 });
 
-router.post('/delete/:id', isAuth, (req, res) => {
+router.post('/delete/:id', isAuth, async (req, res) => {
     const cubeId = req.params.id;
 
-    cubeManager.deleteCube(cubeId);
+    try {
+        await cubeManager.deleteCube(cubeId);
+    } catch (error) {
+        return res.redirect('/404')
+    }
 
     res.redirect('/')
 })

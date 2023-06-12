@@ -27,15 +27,15 @@ exports.getCube = (id) => {
     return cube;
 }
 
-exports.attachAccessory = async (cubeId, accessoryId) => {
+exports.attachAccessory = (cubeId, accessoryId) => {
 
-    //Cube.findByIdAndUpdate(cubeId, { $push: { accessories: accessoryId } }) - MongoDB query
+     Cube.findByIdAndUpdate(cubeId, { $push: { accessories: accessoryId } })
 
-    const cube = await Cube.findById(cubeId);
-    cube.accessories.push(accessoryId);
-    await cube.save()
+    // const cube = await Cube.findById(cubeId);
+    // cube.accessories.push(accessoryId);
+    // await cube.save()
 }
 
-exports.updateCube = async (cubeId, cubeData) => Cube.findByIdAndUpdate(cubeId, cubeData);
+exports.updateCube = (cubeId, cubeData) => Cube.findByIdAndUpdate(cubeId, cubeData);
 
-exports.deleteCube = async (cubeId) => Cube.findByIdAndDelete(cubeId);
+exports.deleteCube = (cubeId) => Cube.findByIdAndDelete(cubeId);
