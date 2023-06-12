@@ -5,7 +5,6 @@ exports.add = (newCube) => Cube.create(newCube)
 exports.getAll = (search, from, to) => {
     let cubes = Cube.find();
 
-    // TODO: Search results with mongoose filters
 
     if (search) {
         cubes = cubes.filter(cube => cube.name.toLowerCase().includes(search.toLowerCase()));

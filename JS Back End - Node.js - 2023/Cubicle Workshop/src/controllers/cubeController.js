@@ -38,7 +38,13 @@ router.get('/details/:id', async (req, res) => {
     const id = req.params.id;
     const userId = req.user?._id
 
-    const cube = await cubeManager.getCube(id).lean();
+    let cube
+
+    try {
+        cube = await cubeManager.getCube(id).lean();
+    } catch (error) {
+        return res.redirect('/404');
+    }
 
     const isCreator = userId === cube.creatorId.toString();
 
