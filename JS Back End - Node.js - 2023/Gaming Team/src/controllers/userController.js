@@ -11,12 +11,21 @@ router.post('/register', async (req, res) => {
 
     await userManager.register({ username, email, password, repeatPassword })
 
-    res.redirect('/');
+    res.redirect('/user/login');
 });
 
 router.get('/login', (req, res) => {
-
     res.render('./user/login')
+});
+
+router.post('/login', async (req, res) => {
+    const {email, password} = req.body;
+
+    const userData = await userManager.getUser(email);
+
+    
+
+    res.redirect('/')
 })
 
 module.exports = router;
