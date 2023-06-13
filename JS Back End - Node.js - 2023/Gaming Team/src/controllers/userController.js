@@ -25,12 +25,12 @@ router.post('/login', async (req, res) => {
         const token = await userManager.login(email, password);
 
         res.cookie('auth', token, { httpOnly: true });
+
         res.redirect('/')
     } catch (error) {
 
         // TODO LOGIC
         console.log(error);
-
     }
 });
 
