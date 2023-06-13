@@ -19,6 +19,12 @@ const userSchema = new mongoose.Schema({
     }
 });
 
+userSchema.virtual('repeatPassword').set(function (value) {
+    if (value !== this.password){
+    throw new Error('Password do not match')
+}
+});
+
 userSchema.pre('save', async function () {
     const hash = await bcrypt.hash(this.password, 10);
 
@@ -27,10 +33,6 @@ userSchema.pre('save', async function () {
 
 const User = mongoose.model('User', userSchema);
 
-userSchema.virtual('repeatPassword').set(function (value) {
-    if (value !== this.password){
-    throw new Error('Password do not match')
-}
-});
+
 
 module.exports = User;
