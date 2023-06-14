@@ -7,8 +7,6 @@ router.get('/catalog', async (req, res) => {
 
     const allPets = await petManager.getAllPets().lean();
 
-    console.log(allPets)
-
     const hasPets = allPets.length > 0;
 
     res.render('./pets/catalog', { hasPets, allPets });
@@ -37,9 +35,9 @@ router.get('/details/:id', async (req, res) => {
 
     const foundPet = await petManager.getPet(petId).lean();
 
+    const isOwner = req.user?._id == foundPet.owner._id.toString()
 
-
-    res.render('./pets/details',)
+    res.render('./pets/details', { foundPet, isOwner })
 })
 
 module.exports = router
