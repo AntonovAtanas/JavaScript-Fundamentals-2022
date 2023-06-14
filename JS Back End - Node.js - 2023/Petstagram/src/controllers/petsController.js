@@ -7,7 +7,7 @@ router.get('/catalog', (req, res) => {
 })
 
 router.get('/add', (req, res) => {
-
+    res.render('./pets/create');
 })
 
 module.exports = router
