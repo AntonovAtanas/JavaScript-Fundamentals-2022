@@ -2,9 +2,17 @@ const router = require('express').Router();
 
 const petManager = require('../managers/petsManager');
 
-router.get('/catalog', (req, res) => {
+router.get('/catalog', async (req, res) => {
 
-    res.render('./pets/catalog');
+    const allPets = await petManager.getAllPets().lean();
+
+    console.log(allPets)
+
+
+    const hasPets = allPets.length > 0;
+
+
+    res.render('./pets/catalog', { hasPets, allPets });
 })
 
 router.get('/add', (req, res) => {
