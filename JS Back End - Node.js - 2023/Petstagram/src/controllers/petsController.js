@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const petManager = require('../managers/petsManager');
+const { errorMessageHandler } = require('../utils/errorMessageHandler');
 
 router.get('/catalog', async (req, res) => {
 
@@ -8,9 +9,7 @@ router.get('/catalog', async (req, res) => {
 
     console.log(allPets)
 
-
     const hasPets = allPets.length > 0;
-
 
     res.render('./pets/catalog', { hasPets, allPets });
 })
@@ -24,9 +23,23 @@ router.post('/add', async (req, res) => {
 
     const ownerId = req.user._id;
 
-    await petManager.addPet({ name, age, description, location, image, owner: ownerId });
+    try {
+        await petManager.addPet({ name, age, description, location, image, owner: ownerId });
+    } catch (error) {
+        return res.render('./pets/create', { errorMessage: errorMessageHandler(error) });
+    }
 
     res.redirect('/pets/catalog');
+});
+
+router.get('/details/:id', async (req, res) => {
+    const petId = req.params.id;
+
+    const foundPet = await petManager.getPet(petId).lean();
+
+
+
+    res.render('./pets/details',)
 })
 
 module.exports = router

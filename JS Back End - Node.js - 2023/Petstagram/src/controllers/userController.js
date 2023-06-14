@@ -14,8 +14,7 @@ router.post('/register', async (req, res) => {
     try {
         await userManager.register({ username, email, password, repeatPassword })
     } catch (error) {
-        const errorMessage = errorMessageHandler(error)
-        return res.render('./user/register', { errorMessage });
+        return res.render('./user/register', { errorMessage: errorMessageHandler(error) });
     }
 
     res.redirect('/');
