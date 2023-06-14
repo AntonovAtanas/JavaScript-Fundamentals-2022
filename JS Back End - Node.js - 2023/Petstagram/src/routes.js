@@ -7,7 +7,7 @@ const error404Controller = require('./controllers/error404Controller');
 
 router.use(homeController);
 router.use('/user', userController);
-router.use(petsController);
+router.use('/pets', petsController);
 router.use('*', error404Controller);
 
 module.exports = router;
