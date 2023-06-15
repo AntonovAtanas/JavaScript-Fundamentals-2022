@@ -1,12 +1,13 @@
 <main id="create">
-
-    {{#each errorMessage}}
+    
     <div>
         <div class="errorContainer">
+             {{#each errorMessage}}
             <p>{{this}}</p>
+            {{/each}}
         </div>
     </div>
-    {{/each}}
+    
 
     <section id="create-container">
         <div class="create-container-info">
