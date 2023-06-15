@@ -4,6 +4,8 @@ const userManager = require('../managers/userManager');
 
 const { errorMessageHandler } = require('../utils/errorMessageHandler')
 
+const { isAuth } = require('../middlewares/authMiddleware');
+
 // Register page 
 router.get('/register', (req, res) => {
     res.render('./user/register');
@@ -43,7 +45,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.get('/logout', (req, res) => {
+router.get('/logout', isAuth, (req, res) => {
     res.clearCookie('auth');
     res.redirect('/');
 })

@@ -18,7 +18,7 @@ const gameSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: [true, 'Price is required'],
-        min: 1
+        min: [1, 'Price must be positive number']
     },
     genre: {
         type: String,

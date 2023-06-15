@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const gameManager = require('../managers/gameManager');
 const { errorMessageHandler } = require('../utils/errorMessageHandler');
+const { isAuth } = require('../middlewares/authMiddleware');
 
 const optionsGenerator = require('../utils/optionsGenerator');
 
@@ -15,11 +16,11 @@ router.get('/catalog', async (req, res) => {
     }
 })
 
-router.get('/create', (req, res) => {
+router.get('/create', isAuth, (req, res) => {
     res.render('./games/create');
 })
 
-router.post('/create', async (req, res) => {
+router.post('/create', isAuth, async (req, res) => {
     const gameDetails = req.body;
     const userId = req.user?._id
 
@@ -50,7 +51,7 @@ router.get('/details/:id', async (req, res) => {
     }
 });
 
-router.get('/buy/:id', async (req, res) => {
+router.get('/buy/:id', isAuth, async (req, res) => {
     const gameId = req.params.id;
     const userId = req.user?._id;
 
@@ -64,7 +65,7 @@ router.get('/buy/:id', async (req, res) => {
 });
 
 // Delete
-router.get('/delete/:id', async (req, res) => {
+router.get('/delete/:id', isAuth, async (req, res) => {
     const gameId = req.params.id;
 
     try {
@@ -77,7 +78,7 @@ router.get('/delete/:id', async (req, res) => {
 });
 
 // Get edit page
-router.get('/edit/:id', async (req, res) => {
+router.get('/edit/:id', isAuth, async (req, res) => {
     const gameId = req.params.id;
 
     const foundGame = await gameManager.getGame(gameId).lean();
@@ -87,20 +88,30 @@ router.get('/edit/:id', async (req, res) => {
     res.render('./games/edit', { foundGame, options });
 });
 
-router.post('/edit/:id', async (req, res) => {
+router.post('/edit/:id', isAuth, async (req, res) => {
     const gameId = req.params.id;
-    const {name, image, price, platform, genre, description} = req.body;
+    const { name, image, price, platform, genre, description } = req.body;
 
     try {
-        await gameManager.editGame(gameId, {name, image, price, platform, genre, description});
+        await gameManager.editGame(gameId, { name, image, price, platform, genre, description });
     } catch (error) {
         const foundGame = await gameManager.getGame(gameId).lean();
 
         const options = optionsGenerator.optionsGenerator(foundGame.platform);
-        return res.render('./games/edit', {errorMessage: errorMessageHandler(error), foundGame, options})
+        return res.render('./games/edit', { errorMessage: errorMessageHandler(error), foundGame, options })
     }
 
     res.redirect(`/games/details/${gameId}`)
+});
+
+// Search
+router.get('/search',  async (req, res) => {
+    try {
+        const allGames = await gameManager.allGames().lean();
+        res.render('./games/search', { allGames });
+    } catch (error) {
+        return res.render('./games/search', { errorMessage: errorMessageHandler(error) })
+    }
 })
 
 module.exports = router;
