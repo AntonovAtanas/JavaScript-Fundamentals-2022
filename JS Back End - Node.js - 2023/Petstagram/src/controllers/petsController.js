@@ -52,6 +52,18 @@ router.post('/details/:id/comment', async (req, res) => {
     }
 
     res.redirect(`/pets/details/${petId}`)
+});
+
+router.get('/delete/:id', async (req, res) => {
+    const petId = req.params.id;
+
+    try {
+        await petManager.deletePet(petId);
+    } catch (error) {
+        return res.render(`./pets/details/${petId}`, { errorMessage: errorMessageHandler(error) });
+    }
+
+    res.redirect('/pets/catalog');
 })
 
 module.exports = router

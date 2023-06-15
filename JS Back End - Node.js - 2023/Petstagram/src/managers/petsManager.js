@@ -8,8 +8,10 @@ exports.getPet = (petId) => Pet.findById(petId).populate('owner').populate('comm
 
 exports.addComment = async (user, comment, petId) => {
     const foundPet = await Pet.findById(petId);
-    
-    foundPet.commentList.push({user, message: comment});
-    
+
+    foundPet.commentList.push({ user, message: comment });
+
     await foundPet.save();
 }
+
+exports.deletePet = (petId) => Pet.findByIdAndDelete(petId);
