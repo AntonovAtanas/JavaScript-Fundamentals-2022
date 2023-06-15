@@ -30,4 +30,32 @@ router.post('/create', async (req, res) => {
     res.redirect('/games/catalog')
 })
 
+router.get('/details/:id', async (req, res) => {
+    const gameId = req.params.id;
+
+    try {
+        const foundGame = await gameManager.getGame(gameId).lean();
+        const isOwner = foundGame.owner == req.user?._id;
+        
+
+        res.render('./games/details', { foundGame, isOwner })
+    } catch (error) {
+        return res.render('./games/catalog', { errorMessage: errorMessageHandler(error) })
+    }
+});
+
+router.get('/buy/:id', async(req, res) => {
+    const gameId = req.params.id;
+    const userId = req.user?._id;
+
+    try {
+        await gameManager.buyGame(gameId, userId);
+
+        res.redirect(`/games/details/${gameId}`)
+    } catch (error) {
+        return res.render(`./games/details/${gameId}`, { errorMessage: errorMessageHandler(error) })
+    }   
+})
+
+
 module.exports = router;
