@@ -3,17 +3,18 @@ const router = require('express').Router();
 const petManager = require('../managers/petsManager');
 const { errorMessageHandler } = require('../utils/errorMessageHandler');
 
+// Catalog
 router.get('/catalog', async (req, res) => {
 
     const allPets = await petManager.getAllPets().lean();
 
     res.render('./pets/catalog', { allPets });
 })
-
+// Render add page
 router.get('/add', (req, res) => {
     res.render('./pets/create');
 });
-
+// Add new pet
 router.post('/add', async (req, res) => {
     const { name, age, description, location, image } = req.body;
 
@@ -27,7 +28,7 @@ router.post('/add', async (req, res) => {
 
     res.redirect('/pets/catalog');
 });
-
+// Details
 router.get('/details/:id', async (req, res) => {
     const petId = req.params.id;
 
@@ -37,7 +38,7 @@ router.get('/details/:id', async (req, res) => {
 
     res.render('./pets/details', { foundPet, isOwner })
 });
-
+// Add comment
 router.post('/details/:id/comment', async (req, res) => {
     const petId = req.params.id;
     const user = req.user._id
@@ -54,6 +55,7 @@ router.post('/details/:id/comment', async (req, res) => {
     res.redirect(`/pets/details/${petId}`)
 });
 
+// Delete
 router.get('/delete/:id', async (req, res) => {
     const petId = req.params.id;
 
@@ -64,6 +66,16 @@ router.get('/delete/:id', async (req, res) => {
     }
 
     res.redirect('/pets/catalog');
+});
+
+// Render edit page
+
+router.get('/edit/:id', async (req, res) => {
+    const petId = req.params.id;
+
+    const foundPet = await petManager.getPet(petId).lean();
+
+    res.render('./pets/edit', { foundPet })
 })
 
 module.exports = router
