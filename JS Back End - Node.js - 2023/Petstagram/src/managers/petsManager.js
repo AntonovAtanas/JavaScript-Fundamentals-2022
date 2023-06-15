@@ -15,3 +15,5 @@ exports.addComment = async (user, comment, petId) => {
 }
 
 exports.deletePet = (petId) => Pet.findByIdAndDelete(petId);
+
+exports.edit = (petId, petData) => Pet.findByIdAndUpdate(petId, petData);

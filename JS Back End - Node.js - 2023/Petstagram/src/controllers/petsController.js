@@ -33,7 +33,6 @@ router.get('/details/:id', async (req, res) => {
     const petId = req.params.id;
 
     const foundPet = await petManager.getPet(petId).lean();
-    console.log(foundPet)
     const isOwner = req.user?._id == foundPet.owner._id.toString();
 
     res.render('./pets/details', { foundPet, isOwner })
@@ -69,7 +68,6 @@ router.get('/delete/:id', async (req, res) => {
 });
 
 // Render edit page
-
 router.get('/edit/:id', async (req, res) => {
     const petId = req.params.id;
 
@@ -77,5 +75,19 @@ router.get('/edit/:id', async (req, res) => {
 
     res.render('./pets/edit', { foundPet })
 })
+
+// Edit 
+router.post('/edit/:id', async (req, res) => {
+    const petId = req.params.id;
+    const petData = req.body;
+
+    try {
+        await petManager.edit(petId, petData);
+    } catch (error) {
+        return res.render(`./pets/details/${petId}`, { errorMessage: errorMessageHandler(error) });
+    }
+
+    res.redirect(`/pets/details/${petId}`)
+});
 
 module.exports = router
