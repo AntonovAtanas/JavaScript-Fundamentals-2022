@@ -13,3 +13,5 @@ exports.buyGame = async (gameId, userId) => {
 
     await foundGame.save();
 }
+
+exports.deleteGame = (gameId) => Game.findByIdAndDelete(gameId);

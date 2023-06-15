@@ -48,7 +48,7 @@ router.get('/details/:id', async (req, res) => {
     }
 });
 
-router.get('/buy/:id', async(req, res) => {
+router.get('/buy/:id', async (req, res) => {
     const gameId = req.params.id;
     const userId = req.user?._id;
 
@@ -58,7 +58,19 @@ router.get('/buy/:id', async(req, res) => {
         res.redirect(`/games/details/${gameId}`)
     } catch (error) {
         return res.render(`./games/details/${gameId}`, { errorMessage: errorMessageHandler(error) })
-    }   
+    }
+});
+
+router.get('/delete/:id', async (req, res) => {
+    const gameId = req.params.id;
+
+    try {
+        await gameManager.deleteGame(gameId);
+    } catch (error) {
+        return res.render(`./games/catalog`, { errorMessage: errorMessageHandler(error) }) 
+    }
+
+    res.redirect('/games/catalog');
 })
 
 
