@@ -1,7 +1,9 @@
 const router = require('express').Router();
 
 const gameManager = require('../managers/gameManager');
-const { errorMessageHandler } = require('../utils/errorMessageHandler')
+const { errorMessageHandler } = require('../utils/errorMessageHandler');
+
+const optionsGenerator = require('../utils/optionsGenerator');
 
 router.get('/catalog', async (req, res) => {
 
@@ -61,16 +63,28 @@ router.get('/buy/:id', async (req, res) => {
     }
 });
 
+// Delete
 router.get('/delete/:id', async (req, res) => {
     const gameId = req.params.id;
 
     try {
         await gameManager.deleteGame(gameId);
     } catch (error) {
-        return res.render(`./games/catalog`, { errorMessage: errorMessageHandler(error) }) 
+        return res.render(`./games/catalog`, { errorMessage: errorMessageHandler(error) })
     }
 
     res.redirect('/games/catalog');
+});
+
+// Get edit page
+router.get('/edit/:id', async (req, res) => {
+    const gameId = req.params.id;
+
+    const foundGame = await gameManager.getGame(gameId).lean();
+
+    const options = optionsGenerator.optionsGenerator(foundGame.platform);
+
+    res.render('./games/edit', { foundGame, options });
 })
 
 
