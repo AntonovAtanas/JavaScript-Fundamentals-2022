@@ -25,7 +25,9 @@
                 <p class="buy-message">You have already bought this game</p>
                 {{else}}
                 {{#if isAuthenticated}}
+                {{#unless isOwner}}
                 <a href="/games/buy/{{foundGame._id}}" class="btn-buy">Buy</a>
+                {{/unless}}
                 {{/if}}
                 {{/if}}
             </div>
