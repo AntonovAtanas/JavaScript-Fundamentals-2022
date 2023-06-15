@@ -32,16 +32,24 @@ router.get('/details/:id', async (req, res) => {
     const petId = req.params.id;
 
     const foundPet = await petManager.getPet(petId).lean();
-
+    console.log(foundPet)
     const isOwner = req.user?._id == foundPet.owner._id.toString();
 
     res.render('./pets/details', { foundPet, isOwner })
 });
 
-router.get('/details/:id/comment', (req, res) => {
+router.post('/details/:id/comment', async (req, res) => {
     const petId = req.params.id;
+    const user = req.user._id
+    const { comment } = req.body;
 
-    console.log('comment')
+    try {
+        await petManager.addComment(user, comment, petId);
+
+        return res.redirect(`/pets/details/${petId}`)
+    } catch (error) {
+        console.log(error)
+    }
 
     res.redirect(`/pets/details/${petId}`)
 })

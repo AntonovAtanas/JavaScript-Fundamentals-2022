@@ -4,4 +4,12 @@ exports.addPet = (petData) => Pet.create(petData);
 
 exports.getAllPets = () => Pet.find().populate('owner');
 
-exports.getPet = (petId) => Pet.findOne({ _id: petId }).populate('owner');
+exports.getPet = (petId) => Pet.findById(petId).populate('owner').populate('commentList.user')
+
+exports.addComment = async (user, comment, petId) => {
+    const foundPet = await Pet.findById(petId);
+    
+    foundPet.commentList.push({user, message: comment});
+    
+    await foundPet.save();
+}
