@@ -6,17 +6,17 @@ const { SECRET } = require('../config/config');
 
 exports.register = (userData) => User.create(userData);
 
-exports.login = async (email, password) => {
-    const user = await User.findOne({ email }).lean();
+exports.login = async (username, password) => {
+    const user = await User.findOne({ username }).lean();
 
     if (!user) {
-        throw new Error('User not found')
+        throw new Error('Wrong username or password')
     };
 
     const isVerified = await bcrypt.compare(password, user.password);
 
     if (!isVerified) {
-        throw new Error('Wrong password!');
+        throw new Error('Wrong username or password!');
     };
 
     const payload = {

@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Username is required'],
         minLength: [5, 'Username must be at least 5 characters'],
+        unique: true
     },
     email: {
         type: String,
@@ -21,7 +22,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.virtual('repeatPassword').set(function (value) {
     if (value !== this.password){
-    throw new Error('Password do not match')
+    throw new Error('Passwords do not match')
 }
 });
 
@@ -32,7 +33,5 @@ userSchema.pre('save', async function () {
 })
 
 const User = mongoose.model('User', userSchema);
-
-
 
 module.exports = User;

@@ -1,4 +1,3 @@
-const router = require('express').Router();
 const jwtoken = require('../lib/jwt');
 const { SECRET } = require('../config/config');
 
@@ -21,4 +20,12 @@ exports.auth = async (req, res, next) => {
     } else {
         next();
     }
+};
+
+exports.isAuth = (req, res, next) => {
+    if (!req.user) {
+        return res.redirect('/users/login');
+    }
+
+    next();
 };
