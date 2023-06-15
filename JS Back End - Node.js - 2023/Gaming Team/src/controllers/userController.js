@@ -4,10 +4,12 @@ const userManager = require('../managers/userManager');
 
 const { errorMessageHandler } = require('../utils/errorMessageHandler')
 
+// Register page 
 router.get('/register', (req, res) => {
     res.render('./user/register');
 });
 
+// Register page action
 router.post('/register', async (req, res) => {
     const { username, email, password, repeatPassword } = req.body;
 
@@ -21,10 +23,12 @@ router.post('/register', async (req, res) => {
     res.redirect('/');
 });
 
+// Login page
 router.get('/login', (req, res) => {
     res.render('./user/login')
 });
 
+// Login page action
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
