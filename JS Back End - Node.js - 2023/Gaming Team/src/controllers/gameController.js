@@ -36,10 +36,14 @@ router.get('/details/:id', async (req, res) => {
     try {
         const foundGame = await gameManager.getGame(gameId).lean();
         const isOwner = foundGame.owner == req.user?._id;
-        
 
-        res.render('./games/details', { foundGame, isOwner })
+        // check if user has bought
+        let boughtBy = foundGame.boughtBy.map(el => el.toString())
+        const hasBought = boughtBy.includes(req.user?._id) && req.user;
+
+        res.render('./games/details', { foundGame, isOwner, hasBought })
     } catch (error) {
+        console.log(error)
         return res.render('./games/catalog', { errorMessage: errorMessageHandler(error) })
     }
 });
