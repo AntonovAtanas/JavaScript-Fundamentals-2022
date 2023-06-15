@@ -22,8 +22,15 @@ const petSchema = new mongoose.Schema({
         required: [true, 'Location is required']
     },
     commentList: [{
-        type: mongoose.Types.ObjectId,
-        ref: 'User',
+        user: {
+            type: mongoose.Types.ObjectId,
+            ref: 'User',
+            required: true
+        },
+        message: {
+            type: String,
+            required: [true, 'Please enter your comment']
+        }
     }],
     owner: {
         type: mongoose.Types.ObjectId,

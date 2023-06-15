@@ -5,7 +5,7 @@ exports.errorMessageHandler = (error) => {
         return { errorMessage: ['Username already taken'] }
     } else if (error instanceof MongooseError) {
         return Object.values(error.errors).map(x => x.message);
-    } else {
-        return [error.message]
     }
+    return [error.message]
+
 };

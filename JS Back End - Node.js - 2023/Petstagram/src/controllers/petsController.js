@@ -35,7 +35,7 @@ router.get('/details/:id', async (req, res) => {
 
     const foundPet = await petManager.getPet(petId).lean();
 
-    const isOwner = req.user?._id == foundPet.owner._id.toString()
+    const isOwner = req.user?._id == foundPet.owner._id.toString();
 
     res.render('./pets/details', { foundPet, isOwner })
 })
