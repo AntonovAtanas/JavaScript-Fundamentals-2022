@@ -85,7 +85,22 @@ router.get('/edit/:id', async (req, res) => {
     const options = optionsGenerator.optionsGenerator(foundGame.platform);
 
     res.render('./games/edit', { foundGame, options });
-})
+});
 
+router.post('/edit/:id', async (req, res) => {
+    const gameId = req.params.id;
+    const {name, image, price, platform, genre, description} = req.body;
+
+    try {
+        await gameManager.editGame(gameId, {name, image, price, platform, genre, description});
+    } catch (error) {
+        const foundGame = await gameManager.getGame(gameId).lean();
+
+        const options = optionsGenerator.optionsGenerator(foundGame.platform);
+        return res.render('./games/edit', {errorMessage: errorMessageHandler(error), foundGame, options})
+    }
+
+    res.redirect(`/games/details/${gameId}`)
+})
 
 module.exports = router;

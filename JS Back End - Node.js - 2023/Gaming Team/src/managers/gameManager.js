@@ -16,4 +16,4 @@ exports.buyGame = async (gameId, userId) => {
 
 exports.deleteGame = (gameId) => Game.findByIdAndDelete(gameId);
 
-exports.editGame = (gameId, gameData) => Game.findByIdAndUpdate(gameId, gameData);
+exports.editGame = (gameId, {name, image, price, platform, genre, description}) => Game.findByIdAndUpdate(gameId, {name, image, price, platform, genre, description}, {runValidators: true});

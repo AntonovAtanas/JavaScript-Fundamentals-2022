@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const gameSchema = new mongoose.Schema({
     platform: {
         type: String,
-        // VALIDATION??
         required: [true, 'Platform is required']
     },
     name: {
