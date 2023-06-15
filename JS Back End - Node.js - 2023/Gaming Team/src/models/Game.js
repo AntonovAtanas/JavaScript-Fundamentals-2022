@@ -22,10 +22,12 @@ const gameSchema = new mongoose.Schema({
         min: 1
     },
     genre: {
+        type: String,
         minLength: [2, 'Genre must be minimum 2 characters long'],
         required: [true, 'Genre is required']
     },
     description: {
+        type: String,
         minLength: [10, 'Description must be minimum 10 characters long'],
         required: [true, 'Description is required']
     },
@@ -41,4 +43,4 @@ const gameSchema = new mongoose.Schema({
 
 const Game = mongoose.model('Game', gameSchema);
 
-model.exports = Game;
+module.exports = Game;
