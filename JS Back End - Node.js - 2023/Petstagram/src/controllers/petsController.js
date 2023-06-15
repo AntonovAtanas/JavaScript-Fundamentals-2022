@@ -7,9 +7,7 @@ router.get('/catalog', async (req, res) => {
 
     const allPets = await petManager.getAllPets().lean();
 
-    const hasPets = allPets.length > 0;
-
-    res.render('./pets/catalog', { hasPets, allPets });
+    res.render('./pets/catalog', { allPets });
 })
 
 router.get('/add', (req, res) => {
@@ -38,6 +36,14 @@ router.get('/details/:id', async (req, res) => {
     const isOwner = req.user?._id == foundPet.owner._id.toString();
 
     res.render('./pets/details', { foundPet, isOwner })
+});
+
+router.get('/details/:id/comment', (req, res) => {
+    const petId = req.params.id;
+
+    console.log('comment')
+
+    res.redirect(`/pets/details/${petId}`)
 })
 
 module.exports = router

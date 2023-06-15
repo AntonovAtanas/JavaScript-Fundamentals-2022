@@ -57,15 +57,11 @@
                     <img src="{{foundPet.image}}" alt="post" class="cover">
                 </div>
 
-
-
                 <div class="bottom">
 
                     <p class="message">
                         <b class="petDescription">{{foundPet.description}}</b>
                     </p>
-
-
                     <!-- Photo description -->
                     <div class="pet-details">
                         <p class="petName">Name: {{foundPet.name}}</p>
@@ -88,48 +84,22 @@
                                     <p><b>StevIvanov</b>- OMG where can i get one</p>
                                 </div>
                             </div>
-                            <div class="userDetails">
-                                <div class="comment-data">
-                                    <div class="profilepic">
-                                        <div class="profile_img">
-                                            <div class="image">
-                                                <!-- User Profile Image -->
-                                                <img src="/static/images/person.png" alt="img8">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!--User's username-->
-                                    <p><b>StevIvanov</b>- OMG where can i get one</p>
-                                </div>
-                            </div>
-                            <div class="userDetails">
-                                <div class="comment-data">
-                                    <div class="profilepic">
-                                        <div class="profile_img">
-                                            <div class="image">
-                                                <!-- User Profile Image -->
-                                                <img src="/static/images/person.png" alt="img8">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!--User's username-->
-                                    <p><b>StevIvanov</b>- OMG where can i get one</p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
+                {{#if isAuthenticated}}
+                {{#unless isOwner}}
                 <div class="addComments">
                     <!-- Start Add Comments Form -->
-                    <form method="#" action="#">
+                    <form method="GET" action="/pets/details/{{foundPet._id}}/comment">
                         <textarea id="comment-textarea" name="" cols="40" rows="10"
                             placeholder="Add comment..."></textarea>
                         <!-- Post Comments Button -->
                         <button type="submit">Post</button>
                     </form>
                 </div>
+                {{/unless}}
+                {{/if}}
             </div>
         </div>
     </div>

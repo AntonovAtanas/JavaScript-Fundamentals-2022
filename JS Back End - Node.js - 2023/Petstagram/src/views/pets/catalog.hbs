@@ -1,11 +1,6 @@
 <main>
     <div class="container">
         <div class="col-9">
-            <!-- Start Pet Photos Post Section -->
-
-
-            <!--If there are no photo yet!-->
-            {{#if hasPets}}
             {{#each allPets}}
             <div class="card">
 
@@ -47,12 +42,12 @@
                     <h4 class="details">See details</h4>
                 </a>
             </div>
-            {{/each}}
             {{else}}
             <article class="not-available-photo">
                 <h1>No photo posts yet.</h1>
+                {{/each}}
+
             </article>
-            {{/if}}
         </div>
 
     </div>
