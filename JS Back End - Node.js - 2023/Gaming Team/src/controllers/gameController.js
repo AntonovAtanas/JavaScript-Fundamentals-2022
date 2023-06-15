@@ -105,13 +105,21 @@ router.post('/edit/:id', isAuth, async (req, res) => {
 });
 
 // Search
-router.get('/search',  async (req, res) => {
+router.get('/search', async (req, res) => {
     try {
         const allGames = await gameManager.allGames().lean();
         res.render('./games/search', { allGames });
     } catch (error) {
         return res.render('./games/search', { errorMessage: errorMessageHandler(error) })
     }
+});
+
+router.post('/search', async (req, res) => {
+    const { search, platform } = req.body;
+
+    const foundGames = await gameManager.findGame(search, platform);
+
+    return res.render('./games/search', { allGames: foundGames });
 })
 
 module.exports = router;
