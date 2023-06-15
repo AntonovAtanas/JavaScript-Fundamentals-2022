@@ -6,8 +6,8 @@ const { SECRET } = require('../config/config');
 
 exports.register = (userData) => User.create(userData);
 
-exports.login = async (username, password) => {
-    const user = await User.findOne({ username }).lean();
+exports.login = async (email, password) => {
+    const user = await User.findOne({ email }).lean();
 
     if (!user) {
         throw new Error('Wrong username or password')
