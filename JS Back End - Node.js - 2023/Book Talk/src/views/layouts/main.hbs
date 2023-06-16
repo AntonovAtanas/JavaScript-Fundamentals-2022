@@ -1,100 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Starts Head Section -->
 
 <head>
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="icon" type="image/x-icon" href="/images/free-30-instagram-stories-icons23_122570.png">
-    <title>Petstagram</title>
-</head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 
-<!-- Starts Body Section -->
+</head>
 
 <body>
 
-    <!-- Starts Header Section with Navigation Bar -->
-    <header>
-        <nav class="navbar">
-            <div class="container">
-                <div class="logo">
-                    <!-- Link to Home Page -->
-                    <a href="/">
-                        <img width="50px" src="/images/free-30-instagram-stories-icons23_122570.png" alt="img1">
-                    </a>
+    <header class="header">
 
-                    <!-- Link to Home Page -->
-                    <a class="home" href="/">
-                        <i>Petstagram</i>
-                    </a>
-                </div>
+        <div class="header">
+            <nav class="navbar">
+                <a href="#">Home</a>
+                <a href="#">Catalog</a>
+                <!--Only for logged user-->
+                <a href="#">Profile</a>
+                <a href="#">Create Review</a>
+                <a href="#">Logout</a>
+                <!--Only for guest-->
+                <a href="#">Login</a>
+                <a href="#">Register</a>
+            </nav>
+        </div>
 
-                <div class="nav-links">
-                    <ul class="nav-group">
-                        <li class="nav-item">
-                            <!-- Link to Catalog Page -->
-                            <a href="/catalog">
-                                <i>Catalog</i>
-                            </a>
-                        </li>
-
-
-                        {{#if isAuthenticated}}
-                        <!--For login users-->
-                        <li class="nav-item">
-                            <!-- Link to Add Photo Page -->
-                            <a href="/photo/add">
-                                <i>Add Photo</i>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <!-- Link to Profile Page -->
-                            <a href="/user/profile">
-                                <i>Profile</i>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <!-- Link to Logout Page -->
-                            <a href="/user/logout">
-                                <i>Logout</i>
-                            </a>
-                        </li>
-                        {{else}}
-                        <!--For Guest User-->
-                        <li class="nav-item">
-                            <!-- Link to Login Page -->
-                            <a href="/user/login">
-                                <i>Login</i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <!-- Link to Register Page -->
-                            <a href="/user/register">
-                                <i>Register</i>
-                            </a>
-                        </li>
-                        {{/if}}
-                    </ul>
-                </div>
-            </div>
-        </nav>
     </header>
 
-    {{#each errorMessage}}
-    <div class="errorContainer">
-        <p id="notification-message">{{this}}</p>
-    </div>
-    {{/each}}
-
     {{{body}}}
-
-    <!-- Starts Footer Section -->
-    <div class="footer">
-        <span class="footer-section">
-            © 2023 SoftUni Back-End Exam
-        </span>
-    </div>
 
 </body>
 
