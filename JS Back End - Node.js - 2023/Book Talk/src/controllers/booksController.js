@@ -8,8 +8,8 @@ const { isAuth } = require('../middlewares/authMiddleware');
 router.get('/catalog', async (req, res) => {
 
     try {
-        const allProducts = await productManager.allProducts().lean();
-        res.render('./books/catalog', { allProducts });
+        const allBooks = await productManager.allBooks().lean();
+        res.render('./books/catalog', { allBooks });
     } catch (error) {
         return res.render('./books/catalog', { errorMessage: errorMessageHandler(error) })
     }

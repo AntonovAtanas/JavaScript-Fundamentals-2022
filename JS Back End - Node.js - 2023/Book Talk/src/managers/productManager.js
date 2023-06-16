@@ -1,6 +1,6 @@
 // Import model
 
-exports.allProducts = () => Game.find();
+exports.allBooks = () => Game.find();
 
 exports.addProduct = (productData) => Game.create(productData);
 
