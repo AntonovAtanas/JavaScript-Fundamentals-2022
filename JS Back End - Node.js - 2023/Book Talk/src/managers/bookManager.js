@@ -10,8 +10,8 @@ exports.getBook = (bookId) => Book.findById(bookId);
 
 exports.deleteBook = (bookId) => Book.findByIdAndDelete(bookId);
 
-exports.editProduct = (bookId, bookData) => {
-    Book.findByIdAndUpdate(bookId, bookData, { runValidators: true });
+exports.editBook = (bookId, bookData) => {
+    return Book.findByIdAndUpdate(bookId, bookData, { runValidators: true });
 };
 
 exports.wish = async (bookId, userId) => {

@@ -83,27 +83,30 @@ router.get('/delete/:id', isAuth, async (req, res) => {
 
 // Get edit page
 router.get('/edit/:id', isAuth, async (req, res) => {
-    const productId = req.params.id;
+    const bookId = req.params.id;
 
-    const foundProduct = await bookManager.getProduct(productId).lean();
-
-    res.render('./books/edit', { foundProduct });
+    try {
+        const foundBook = await bookManager.getBook(bookId).lean();
+        return res.render('./books/edit', { foundBook });
+    } catch (error) {
+        return res.render('./books/catalog', { errorMessage: errorMessageHandler(error) })
+    }
 });
 
 // Action on edit page
 router.post('/edit/:id', isAuth, async (req, res) => {
-    const productId = req.params.id;
-    const productData = req.body;
+    const bookId = req.params.id;
+    const bookData = req.body;
 
     try {
-        await bookManager.editProduct(productId, productData);
+        await bookManager.editBook(bookId, bookData);
     } catch (error) {
-        const foundProduct = await bookManager.getProduct(productId).lean();
-
-        return res.render('./product/edit', { errorMessage: errorMessageHandler(error), foundProduct })
+        const foundBook = await bookManager.getBook(bookId).lean();
+        
+        return res.render('./books/edit', { errorMessage: errorMessageHandler(error), foundBook })
     }
 
-    res.redirect(`/books/details/${productId}`)
+    res.redirect(`/books/details/${bookId}`)
 });
 
 module.exports = router;
