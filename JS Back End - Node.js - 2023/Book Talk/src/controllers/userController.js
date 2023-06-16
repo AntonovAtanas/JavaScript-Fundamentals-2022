@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const userManager = require('../managers/userManager');
 
-const { errorMessageHandler } = require('../utils/errorMessageHandler')
+const { errorMessageHandler } = require('../utils/errorMessageHandler');
 
 router.get('/register', (req, res) => {
     res.render('./user/register');
@@ -12,13 +12,16 @@ router.post('/register', async (req, res) => {
     const { username, email, password, repeatPassword } = req.body;
 
     try {
-        await userManager.register({ username, email, password, repeatPassword })
+        const token = await userManager.register({ username, email, password, repeatPassword });
+        // auto login after registration
+        res.cookie('auth', token, { httpOnly: true })
+
+        
     } catch (error) {
         const errorMessage = errorMessageHandler(error)
         return res.render('./user/register', { errorMessage });
     }
-
-    res.redirect('/');
+    res.redirect('/')
 });
 
 router.get('/login', (req, res) => {
