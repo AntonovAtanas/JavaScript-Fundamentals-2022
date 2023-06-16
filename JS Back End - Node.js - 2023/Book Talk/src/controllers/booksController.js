@@ -70,10 +70,10 @@ router.get('/details/:id/wish', async (req, res) => {
 
 // Delete
 router.get('/delete/:id', isAuth, async (req, res) => {
-    const productId = req.params.id;
+    const bookId = req.params.id;
 
     try {
-        await bookManager.deleteProduct(productId);
+        await bookManager.deleteBook(bookId);
     } catch (error) {
         return res.render(`./books/catalog`, { errorMessage: errorMessageHandler(error) })
     }

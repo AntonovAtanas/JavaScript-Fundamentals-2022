@@ -8,7 +8,7 @@ exports.addBook = (bookData) => Book.create(bookData);
 
 exports.getBook = (bookId) => Book.findById(bookId);
 
-exports.deleteProduct = (bookId) => Book.findByIdAndDelete(bookId);
+exports.deleteBook = (bookId) => Book.findByIdAndDelete(bookId);
 
 exports.editProduct = (bookId, bookData) => {
     Book.findByIdAndUpdate(bookId, bookData, { runValidators: true });
