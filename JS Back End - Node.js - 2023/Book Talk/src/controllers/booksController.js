@@ -9,15 +9,15 @@ router.get('/catalog', async (req, res) => {
 
     try {
         const allProducts = await productManager.allProducts().lean();
-        res.render('./product/catalog', { allProducts });
+        res.render('./books/catalog', { allProducts });
     } catch (error) {
-        return res.render('./product/catalog', { errorMessage: errorMessageHandler(error) })
+        return res.render('./books/catalog', { errorMessage: errorMessageHandler(error) })
     }
 });
 
 // Render create page
 router.get('/create', isAuth, (req, res) => {
-    res.render('./product/create');
+    res.render('./books/create');
 })
 
 // Action on create page
@@ -28,10 +28,10 @@ router.post('/create', isAuth, async (req, res) => {
     try {
         await productManager.addProduct({ ...productDetails, owner: userId })
     } catch (error) {
-        return res.render('./product/create', { errorMessage: errorMessageHandler(error) })
+        return res.render('./books/create', { errorMessage: errorMessageHandler(error) })
     }
 
-    res.redirect('/product/catalog')
+    res.redirect('/books/catalog')
 });
 
 // Render product page
@@ -44,9 +44,9 @@ router.get('/details/:id', async (req, res) => {
         // check if user is the owner
         const isOwner = foundProduct.owner == req.user?._id;
 
-        res.render('./product/details', { foundProduct, isOwner })
+        res.render('./books/details', { foundProduct, isOwner })
     } catch (error) {
-        return res.render('./product/catalog', { errorMessage: errorMessageHandler(error) })
+        return res.render('./books/catalog', { errorMessage: errorMessageHandler(error) })
     }
 });
 
@@ -57,10 +57,10 @@ router.get('/delete/:id', isAuth, async (req, res) => {
     try {
         await productManager.deleteProduct(productId);
     } catch (error) {
-        return res.render(`./product/catalog`, { errorMessage: errorMessageHandler(error) })
+        return res.render(`./books/catalog`, { errorMessage: errorMessageHandler(error) })
     }
 
-    res.redirect('/product/catalog');
+    res.redirect('/books/catalog');
 });
 
 // Get edit page
@@ -69,7 +69,7 @@ router.get('/edit/:id', isAuth, async (req, res) => {
 
     const foundProduct = await productManager.getProduct(productId).lean();
 
-    res.render('./product/edit', { foundProduct });
+    res.render('./books/edit', { foundProduct });
 });
 
 // Action on edit page
@@ -85,5 +85,7 @@ router.post('/edit/:id', isAuth, async (req, res) => {
         return res.render('./product/edit', { errorMessage: errorMessageHandler(error), foundProduct })
     }
 
-    res.redirect(`/product/details/${productId}`)
+    res.redirect(`/books/details/${productId}`)
 });
+
+module.exports = router;
