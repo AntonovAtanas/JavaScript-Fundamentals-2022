@@ -20,4 +20,6 @@ exports.wish = async (bookId, userId) => {
     foundBook.wishlist.push(userId);
 
     foundBook.save();
-}
+};
+
+exports.userWishlist = (userId) => Book.find({ wishlist: userId });
