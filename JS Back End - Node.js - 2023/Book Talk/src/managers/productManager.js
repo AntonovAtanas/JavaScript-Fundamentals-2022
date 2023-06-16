@@ -1,13 +1,15 @@
 // Import model
 
-exports.allBooks = () => Game.find();
+const Book = require('../models/Book');
 
-exports.addProduct = (productData) => Game.create(productData);
+exports.allBooks = () => Book.find();
 
-exports.getProduct = (productId) => Game.findById(productId);
+exports.addBook = (bookData) => Book.create(bookData);
 
-exports.deleteProduct = (productId) => Game.findByIdAndDelete(productId);
+exports.getProduct = (bookId) => Book.findById(bookId);
 
-exports.editProduct = (productId, productData) => {
-    Game.findByIdAndUpdate(productId, productData, { runValidators: true });
+exports.deleteProduct = (bookId) => Book.findByIdAndDelete(bookId);
+
+exports.editProduct = (bookId, bookData) => {
+    Book.findByIdAndUpdate(bookId, bookData, { runValidators: true });
 }

@@ -5,6 +5,7 @@ const productManager = require('../managers/productManager');
 const { errorMessageHandler } = require('../utils/errorMessageHandler');
 const { isAuth } = require('../middlewares/authMiddleware');
 
+
 router.get('/catalog', async (req, res) => {
 
     try {
@@ -22,11 +23,11 @@ router.get('/create', isAuth, (req, res) => {
 
 // Action on create page
 router.post('/create', isAuth, async (req, res) => {
-    const productDetails = req.body;
+    const bookDetails = req.body;
     const userId = req.user?._id;
 
     try {
-        await productManager.addProduct({ ...productDetails, owner: userId })
+        await productManager.addBook({ ...bookDetails, owner: userId })
     } catch (error) {
         return res.render('./books/create', { errorMessage: errorMessageHandler(error) })
     }
