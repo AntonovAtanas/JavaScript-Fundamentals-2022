@@ -55,7 +55,7 @@ router.get('/details/:id', async (req, res) => {
 });
 
 // Buy
-router.get('/buy/:id', async (req, res) => {
+router.get('/buy/:id', isAuth, async (req, res) => {
     const cryptoId = req.params.id;
     const userId = req.user?._id;
 
@@ -109,5 +109,7 @@ router.post('/edit/:id', isAuth, async (req, res) => {
 
     res.redirect(`/crypto/details/${cryptoId}`)
 });
+
+
 
 module.exports = router;
