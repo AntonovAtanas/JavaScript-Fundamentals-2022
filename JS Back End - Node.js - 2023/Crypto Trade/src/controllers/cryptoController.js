@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const productManager = require('../managers/productManager');
+const cryptoManager = require('../managers/cryptoManager');
 
 const { errorMessageHandler } = require('../utils/errorMessageHandler');
 const { isAuth } = require('../middlewares/authMiddleware');
@@ -8,8 +8,8 @@ const { isAuth } = require('../middlewares/authMiddleware');
 router.get('/catalog', async (req, res) => {
 
     try {
-        const allProducts = await productManager.allProducts().lean();
-        res.render('./crypto/catalog', { allProducts });
+        const allCrypto = await cryptoManager.allProducts().lean();
+        res.render('./crypto/catalog', { allCrypto });
     } catch (error) {
         return res.render('./crypto/catalog', { errorMessage: errorMessageHandler(error) })
     }
@@ -26,7 +26,7 @@ router.post('/create', isAuth, async (req, res) => {
     const userId = req.user?._id;
 
     try {
-        await productManager.addProduct({ ...productDetails, owner: userId })
+        await cryptoManager.addProduct({ ...productDetails, owner: userId })
     } catch (error) {
         return res.render('./crypto/create', { errorMessage: errorMessageHandler(error) })
     }
@@ -39,7 +39,7 @@ router.get('/details/:id', async (req, res) => {
     const producId = req.params.id;
 
     try {
-        const foundProduct = await productManager.getProduct(producId).lean();
+        const foundProduct = await cryptoManager.getProduct(producId).lean();
 
         // check if user is the owner
         const isOwner = foundProduct.owner == req.user?._id;
@@ -55,7 +55,7 @@ router.get('/delete/:id', isAuth, async (req, res) => {
     const productId = req.params.id;
 
     try {
-        await productManager.deleteProduct(productId);
+        await cryptoManager.deleteProduct(productId);
     } catch (error) {
         return res.render(`./crypto/catalog`, { errorMessage: errorMessageHandler(error) })
     }
@@ -67,7 +67,7 @@ router.get('/delete/:id', isAuth, async (req, res) => {
 router.get('/edit/:id', isAuth, async (req, res) => {
     const productId = req.params.id;
 
-    const foundProduct = await productManager.getProduct(productId).lean();
+    const foundProduct = await cryptoManager.getProduct(productId).lean();
 
     res.render('./crypto/edit', { foundProduct });
 });
@@ -78,9 +78,9 @@ router.post('/edit/:id', isAuth, async (req, res) => {
     const productData = req.body;
 
     try {
-        await productManager.editProduct(productId, productData);
+        await cryptoManager.editProduct(productId, productData);
     } catch (error) {
-        const foundProduct = await productManager.getProduct(productId).lean();
+        const foundProduct = await cryptoManager.getProduct(productId).lean();
 
         return res.render('./crypto/edit', { errorMessage: errorMessageHandler(error), foundProduct })
     }

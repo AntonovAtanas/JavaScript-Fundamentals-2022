@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const homeController = require('./controllers/homeController');
 const userController = require('./controllers/userController');
-const cryptoController = require('./controllers/cryptoManager');
+const cryptoController = require('./controllers/cryptoController');
 const error404Controller = require('./controllers/error404Controller');
 
 router.use(homeController);
