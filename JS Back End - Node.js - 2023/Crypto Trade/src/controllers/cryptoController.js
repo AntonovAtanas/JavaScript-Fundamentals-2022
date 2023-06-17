@@ -22,11 +22,11 @@ router.get('/create', isAuth, (req, res) => {
 
 // Action on create page
 router.post('/create', isAuth, async (req, res) => {
-    const productDetails = req.body;
+    const cryptoDetails = req.body;
     const userId = req.user?._id;
 
     try {
-        await cryptoManager.addProduct({ ...productDetails, owner: userId })
+        await cryptoManager.addProduct({ ...cryptoDetails, owner: userId })
     } catch (error) {
         return res.render('./crypto/create', { errorMessage: errorMessageHandler(error) })
     }

@@ -2,7 +2,7 @@ const Crypto = require('../models/Crypto');
 
 exports.allProducts = () => Crypto.find();
 
-exports.addProduct = (productData) => Crypto.create(productData);
+exports.addProduct = (cryptoDetails) => Crypto.create(cryptoDetails);
 
 exports.getProduct = (productId) => Crypto.findById(productId);
 
