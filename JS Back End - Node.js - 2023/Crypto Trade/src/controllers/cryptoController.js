@@ -9,7 +9,7 @@ const { optionsGenerator } = require('../utils/optionsGenerator');
 router.get('/catalog', async (req, res) => {
 
     try {
-        const allCrypto = await cryptoManager.allProducts().lean();
+        const allCrypto = await cryptoManager.allCrypto().lean();
         res.render('./crypto/catalog', { allCrypto });
     } catch (error) {
         return res.render('./crypto/catalog', { errorMessage: errorMessageHandler(error) })
