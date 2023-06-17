@@ -1,11 +1,12 @@
 <main>
-    {{#each errorMessage}}
     <div>
         <div class="errorContainer">
+            {{#each errorMessage}}
             <p>{{this}}</p>
+            {{/each}}
         </div>
     </div>
-    {{/each}}
+
 
     <div class="register-box">
         <h1>Register</h1>
