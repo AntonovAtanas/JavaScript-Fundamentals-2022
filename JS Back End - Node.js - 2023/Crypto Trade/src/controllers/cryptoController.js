@@ -36,15 +36,18 @@ router.post('/create', isAuth, async (req, res) => {
 
 // Render product page
 router.get('/details/:id', async (req, res) => {
-    const producId = req.params.id;
+    const cryptoId = req.params.id;
 
     try {
-        const foundProduct = await cryptoManager.getProduct(producId).lean();
+        const foundCrypto = await cryptoManager.getCrypto(cryptoId).lean();
 
         // check if user is the owner
-        const isOwner = foundProduct.owner == req.user?._id;
+        const isOwner = foundCrypto.owner == req.user?._id;
 
-        res.render('./crypto/details', { foundProduct, isOwner })
+        let boughtBy = foundCrypto.boughtBy.map(el => el.toString())
+        const hasBought = boughtBy.includes(req.user?._id) && req.user;
+
+        res.render('./crypto/details', { foundCrypto, isOwner, hasBought })
     } catch (error) {
         return res.render('./crypto/catalog', { errorMessage: errorMessageHandler(error) })
     }

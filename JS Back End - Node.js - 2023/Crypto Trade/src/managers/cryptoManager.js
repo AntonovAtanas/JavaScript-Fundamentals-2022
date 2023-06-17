@@ -4,7 +4,7 @@ exports.allProducts = () => Crypto.find();
 
 exports.addProduct = (cryptoDetails) => Crypto.create(cryptoDetails);
 
-exports.getProduct = (productId) => Crypto.findById(productId);
+exports.getCrypto = (cryptoId) => Crypto.findById(cryptoId);
 
 exports.deleteProduct = (productId) => Crypto.findByIdAndDelete(productId);
 
