@@ -95,18 +95,19 @@ router.get('/edit/:id', isAuth, async (req, res) => {
 
 // Action on edit page
 router.post('/edit/:id', isAuth, async (req, res) => {
-    const productId = req.params.id;
-    const productData = req.body;
+    const cryptoId = req.params.id;
+    const cryptoData = req.body;
 
     try {
-        await cryptoManager.editProduct(productId, productData);
+        await cryptoManager.editCrypto(cryptoId, cryptoData);
     } catch (error) {
-        const foundProduct = await cryptoManager.getProduct(productId).lean();
+        const foundCrypto = await cryptoManager.getCrypto(cryptoId).lean();
+        const options = optionsGenerator(foundCrypto.payment);
 
-        return res.render('./crypto/edit', { errorMessage: errorMessageHandler(error), foundProduct })
+        return res.render('./crypto/edit', { errorMessage: errorMessageHandler(error), foundCrypto, options })
     }
 
-    res.redirect(`/crypto/details/${productId}`)
+    res.redirect(`/crypto/details/${cryptoId}`)
 });
 
 module.exports = router;

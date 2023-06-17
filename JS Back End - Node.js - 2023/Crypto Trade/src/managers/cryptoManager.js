@@ -8,7 +8,7 @@ exports.getCrypto = (cryptoId) => Crypto.findById(cryptoId);
 
 exports.deleteCrypto = (cryptoId) => Crypto.findByIdAndDelete(cryptoId);
 
-exports.editProduct = (productId, productData) => {
+exports.editCrypto = (productId, productData) => {
     return Crypto.findByIdAndUpdate(productId, productData, { runValidators: true });
 };
 
