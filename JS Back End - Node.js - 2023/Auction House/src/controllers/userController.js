@@ -9,10 +9,12 @@ router.get('/register', (req, res) => {
 });
 
 router.post('/register', async (req, res) => {
-    const { username, email, password, repeatPassword } = req.body;
+    const { email, firstname, lastname, password, repeatPassword } = req.body;
 
     try {
-        await userManager.register({ username, email, password, repeatPassword })
+        const token = await userManager.register({ email, firstname, lastname, password, repeatPassword });
+
+        res.cookie('auth', token, { httpOnly: true });
     } catch (error) {
         const errorMessage = errorMessageHandler(error)
         return res.render('./user/register', { errorMessage });
