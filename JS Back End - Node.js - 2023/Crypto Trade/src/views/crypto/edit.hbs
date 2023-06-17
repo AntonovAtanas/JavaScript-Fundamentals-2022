@@ -1,0 +1,34 @@
+<main>
+    <div>
+        <div class="errorContainer">
+            {{#each errorMessage}}
+            <p>{{this}}</p>
+            {{/each}}
+        </div>
+    </div>
+
+    <section id="edit-container">
+        <div class="edit-container-info">
+            <h1>Edit Announcement</h1>
+            <form method="POST">
+                <label>Name:</label>
+                <input type="text" id="name" name="name" value="{{foundCrypto.name}}">
+                <label>Image:</label>
+                <input type="text" id="image" name="image"
+                    value="{{foundCrypto.image}}">
+                <label>Price:</label>
+                <input type="number" id="price" name="price" value="{{foundCrypto.price}}">
+                <label>Description:</label>
+                <textarea name="description"
+                    id="description">{{foundCrypto.description}}</textarea>
+                <label>Payment method:</label>
+                <select id="payment" name="payment">
+                    {{#each options}}
+                    <option value="{{option}}" {{#if selected}} selected {{/if}}>{{option}}</option>
+                    {{/each}}
+                </select>
+                <input type="submit" id="btn" value="EDIT"></input>
+            </form>
+        </div>
+    </section>
+</main>

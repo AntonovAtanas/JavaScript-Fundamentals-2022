@@ -4,6 +4,7 @@ const cryptoManager = require('../managers/cryptoManager');
 
 const { errorMessageHandler } = require('../utils/errorMessageHandler');
 const { isAuth } = require('../middlewares/authMiddleware');
+const { optionsGenerator } = require('../utils/optionsGenerator');
 
 router.get('/catalog', async (req, res) => {
 
@@ -26,7 +27,7 @@ router.post('/create', isAuth, async (req, res) => {
     const userId = req.user?._id;
 
     try {
-        await cryptoManager.addProduct({ ...cryptoDetails, owner: userId })
+        await cryptoManager.addCrypto({ ...cryptoDetails, owner: userId })
     } catch (error) {
         return res.render('./crypto/create', { errorMessage: errorMessageHandler(error) })
     }
@@ -53,12 +54,27 @@ router.get('/details/:id', async (req, res) => {
     }
 });
 
-// Delete
-router.get('/delete/:id', isAuth, async (req, res) => {
-    const productId = req.params.id;
+// Buy
+router.get('/buy/:id', async (req, res) => {
+    const cryptoId = req.params.id;
+    const userId = req.user?._id;
 
     try {
-        await cryptoManager.deleteProduct(productId);
+        await cryptoManager.buyCrypto(cryptoId, userId);
+    } catch (error) {
+        console.log(error)
+        return res.render(`./crypto/details`, { errorMessage: errorMessageHandler(error) })
+    }
+
+    res.redirect(`/crypto/details/${cryptoId}`);
+})
+
+// Delete
+router.get('/delete/:id', isAuth, async (req, res) => {
+    const cryptoId = req.params.id;
+
+    try {
+        await cryptoManager.deleteCrypto(cryptoId);
     } catch (error) {
         return res.render(`./crypto/catalog`, { errorMessage: errorMessageHandler(error) })
     }
@@ -68,11 +84,13 @@ router.get('/delete/:id', isAuth, async (req, res) => {
 
 // Get edit page
 router.get('/edit/:id', isAuth, async (req, res) => {
-    const productId = req.params.id;
+    const cryptoId = req.params.id;
 
-    const foundProduct = await cryptoManager.getProduct(productId).lean();
+    const foundCrypto = await cryptoManager.getCrypto(cryptoId).lean();
 
-    res.render('./crypto/edit', { foundProduct });
+    const options = optionsGenerator(foundCrypto.payment);
+
+    res.render('./crypto/edit', { foundCrypto, options });
 });
 
 // Action on edit page
