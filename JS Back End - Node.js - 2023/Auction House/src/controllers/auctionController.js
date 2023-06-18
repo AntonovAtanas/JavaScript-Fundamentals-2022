@@ -87,3 +87,5 @@ router.post('/edit/:id', isAuth, async (req, res) => {
 
     res.redirect(`/product/details/${productId}`)
 });
+
+module.exports = router;
