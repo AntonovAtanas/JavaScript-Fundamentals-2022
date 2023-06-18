@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const productManager = require('../managers/productManager');
+const auctionManager = require('../managers/auctionManager');
 
 const { errorMessageHandler } = require('../utils/errorMessageHandler');
 const { isAuth } = require('../middlewares/authMiddleware');
@@ -8,45 +8,53 @@ const { isAuth } = require('../middlewares/authMiddleware');
 router.get('/catalog', async (req, res) => {
 
     try {
-        const allProducts = await productManager.allProducts().lean();
-        res.render('./product/catalog', { allProducts });
+        const allAuctions = await auctionManager.getAll().lean();
+        res.render('./auction/catalog', { allAuctions });
     } catch (error) {
-        return res.render('./product/catalog', { errorMessage: errorMessageHandler(error) })
+        return res.render('./auction/catalog', { errorMessage: errorMessageHandler(error) })
     }
 });
 
 // Render create page
 router.get('/create', isAuth, (req, res) => {
-    res.render('./product/create');
+    res.render('./auction/create');
 })
 
 // Action on create page
 router.post('/create', isAuth, async (req, res) => {
-    const productDetails = req.body;
+    let { title, description, category, image, price } = req.body;
     const userId = req.user?._id;
 
-    try {
-        await productManager.addProduct({ ...productDetails, owner: userId })
-    } catch (error) {
-        return res.render('./product/create', { errorMessage: errorMessageHandler(error) })
+    switch (category) {
+        case 'estate': category = 'Real Estate'; break;
+        case 'vehicles': category = 'Vehicles'; break;
+        case 'furniture': category = 'Furniture'; break;
+        case 'electronics': category = 'Electronics'; break;
+        case 'other': category = 'Other'; break;
     }
 
-    res.redirect('/product/catalog')
+    try {
+        await auctionManager.addAuction({ title, description, category, image, price, owner: userId })
+    } catch (error) {
+        return res.render('./auction/create', { errorMessage: errorMessageHandler(error) })
+    }
+
+    res.redirect('/auction/catalog')
 });
 
 // Render product page
 router.get('/details/:id', async (req, res) => {
-    const producId = req.params.id;
+    const auctionId = req.params.id;
 
     try {
-        const foundProduct = await productManager.getProduct(producId).lean();
+        const foundAuction = await auctionManager.getAuction(auctionId).lean();
 
         // check if user is the owner
-        const isOwner = foundProduct.owner == req.user?._id;
+        const isOwner = foundAuction.owner._id == req.user?._id;
 
-        res.render('./product/details', { foundProduct, isOwner })
+        res.render('./auction/details', { foundAuction, isOwner })
     } catch (error) {
-        return res.render('./product/catalog', { errorMessage: errorMessageHandler(error) })
+        return res.render('./auction/catalog', { errorMessage: errorMessageHandler(error) })
     }
 });
 
@@ -55,7 +63,7 @@ router.get('/delete/:id', isAuth, async (req, res) => {
     const productId = req.params.id;
 
     try {
-        await productManager.deleteProduct(productId);
+        await auctionManager.deleteProduct(productId);
     } catch (error) {
         return res.render(`./product/catalog`, { errorMessage: errorMessageHandler(error) })
     }
@@ -67,7 +75,7 @@ router.get('/delete/:id', isAuth, async (req, res) => {
 router.get('/edit/:id', isAuth, async (req, res) => {
     const productId = req.params.id;
 
-    const foundProduct = await productManager.getProduct(productId).lean();
+    const foundProduct = await auctionManager.getProduct(productId).lean();
 
     res.render('./product/edit', { foundProduct });
 });
@@ -78,9 +86,9 @@ router.post('/edit/:id', isAuth, async (req, res) => {
     const productData = req.body;
 
     try {
-        await productManager.editProduct(productId, productData);
+        await auctionManager.editProduct(productId, productData);
     } catch (error) {
-        const foundProduct = await productManager.getProduct(productId).lean();
+        const foundProduct = await auctionManager.getProduct(productId).lean();
 
         return res.render('./product/edit', { errorMessage: errorMessageHandler(error), foundProduct })
     }
