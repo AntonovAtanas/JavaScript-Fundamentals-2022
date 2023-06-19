@@ -8,8 +8,8 @@ exports.getAuction = (auctionId) => Auction.findById(auctionId).populate('owner'
 
 exports.delete = (auctionId) => Auction.findByIdAndDelete(auctionId);
 
-exports.editProduct = (productId, productData) => {
-    return Auction.findByIdAndUpdate(productId, productData, { runValidators: true });
+exports.edit = (auctionId, auctionDetails) => {
+    return Auction.findByIdAndUpdate(auctionId, auctionDetails, { runValidators: true });
 }
 
 exports.bid = async (auctionId, userId, bid) => {

@@ -103,27 +103,27 @@ router.get('/delete/:id', isAuth, async (req, res) => {
 
 // Get edit page
 router.get('/edit/:id', isAuth, async (req, res) => {
-    const productId = req.params.id;
+    const auctionId = req.params.id;
 
-    const foundProduct = await auctionManager.getProduct(productId).lean();
+    const foundAuction = await auctionManager.getAuction(auctionId).lean();
+    const hasBids = foundAuction.bidder._id.toString() !== foundAuction.owner._id.toString();
 
-    res.render('./product/edit', { foundProduct });
+    res.render('./auction/edit', { foundAuction, hasBids });
 });
 
 // Action on edit page
 router.post('/edit/:id', isAuth, async (req, res) => {
-    const productId = req.params.id;
-    const productData = req.body;
+    const auctionId = req.params.id;
+    const auctionDetails = req.body;
 
     try {
-        await auctionManager.editProduct(productId, productData);
+        await auctionManager.edit(auctionId, auctionDetails);
     } catch (error) {
-        const foundProduct = await auctionManager.getProduct(productId).lean();
-
-        return res.render('./product/edit', { errorMessage: errorMessageHandler(error), foundProduct })
+        const foundAuction = await auctionManager.getAuction(auctionId).lean();
+        return res.render('./auction/edit', { errorMessage: errorMessageHandler(error), foundAuction })
     }
 
-    res.redirect(`/product/details/${productId}`)
+    res.redirect(`/auction/details/${auctionId}`)
 });
 
 module.exports = router;
