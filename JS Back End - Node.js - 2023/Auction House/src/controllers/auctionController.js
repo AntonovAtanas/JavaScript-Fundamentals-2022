@@ -34,7 +34,7 @@ router.post('/create', isAuth, async (req, res) => {
     }
 
     try {
-        await auctionManager.addAuction({ title, description, category, image, price, owner: userId })
+        await auctionManager.addAuction({ title, description, category, image, price, owner: userId, bidder: userId })
     } catch (error) {
         return res.render('./auction/create', { errorMessage: errorMessageHandler(error) })
     }
@@ -51,11 +51,41 @@ router.get('/details/:id', async (req, res) => {
 
         // check if user is the owner
         const isOwner = foundAuction.owner._id == req.user?._id;
+        
+        // check if there are bids
+        const hasBids = foundAuction.bidder._id.toString() !== foundAuction.owner._id.toString();
 
-        res.render('./auction/details', { foundAuction, isOwner })
+        // check if user is the highest bidder
+        const isHighestBidder = foundAuction.bidder._id.toString() !== foundAuction.owner._id.toString() && foundAuction.bidder._id.toString() == req.user?._id;
+
+        res.render('./auction/details', { foundAuction, isOwner, hasBids, isHighestBidder })
     } catch (error) {
         return res.render('./auction/catalog', { errorMessage: errorMessageHandler(error) })
     }
+});
+
+router.post('/details/:id', async (req, res) => {
+    const auctionId = req.params.id;
+    const userId = req.user?._id;
+
+    const { bid } = req.body;
+
+    const foundAuction = await auctionManager.getAuction(auctionId).lean();
+
+    const isOwner = foundAuction.owner._id == req.user?._id;
+
+    try {
+        if (bid > foundAuction.price){
+            await auctionManager.bid(auctionId, userId, bid)
+        } else {
+            throw new Error('The bid is equal or too low.')
+        }
+    } catch (error) {
+        return res.render('./auction/details', { foundAuction, isOwner, errorMessage: errorMessageHandler(error) })
+    }
+
+    res.redirect(`/auction/details/${auctionId}`)
+
 });
 
 // Delete

@@ -15,8 +15,9 @@
         <h1 class="item">Auctions</h1>
 
         <!-- List of available auctions -->
-        {{#each allAuctions}}
+
         <ul class="catalog cards">
+            {{#each allAuctions}}
             <li class="item">
                 <header class="pad-med">
                     <h2>{{title}}</h2>
@@ -31,8 +32,9 @@
                     <a class="action" href="/auction/details/{{_id}}">See details</a>
                 </footer>
             </li>
+            {{else}}
         </ul>
-        {{else}}
+
 
         <!-- If there are no auctions to display -->
         <div class="item pad-large align-center">
