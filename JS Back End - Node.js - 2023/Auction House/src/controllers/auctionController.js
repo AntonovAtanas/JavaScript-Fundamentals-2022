@@ -90,15 +90,15 @@ router.post('/details/:id', async (req, res) => {
 
 // Delete
 router.get('/delete/:id', isAuth, async (req, res) => {
-    const productId = req.params.id;
+    const auctionId = req.params.id;
 
     try {
-        await auctionManager.deleteProduct(productId);
+        await auctionManager.delete(auctionId);
     } catch (error) {
-        return res.render(`./product/catalog`, { errorMessage: errorMessageHandler(error) })
+        return res.render(`./auction/catalog`, { errorMessage: errorMessageHandler(error) })
     }
 
-    res.redirect('/product/catalog');
+    res.redirect('/auction/catalog');
 });
 
 // Get edit page

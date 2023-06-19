@@ -1,4 +1,3 @@
-// Import model
 const Auction = require('../models/Auction')
 
 exports.getAll = () => Auction.find();
@@ -7,7 +6,7 @@ exports.addAuction = (auctionData) => Auction.create(auctionData);
 
 exports.getAuction = (auctionId) => Auction.findById(auctionId).populate('owner').populate('bidder');
 
-exports.deleteProduct = (productId) => Auction.findByIdAndDelete(productId);
+exports.delete = (auctionId) => Auction.findByIdAndDelete(auctionId);
 
 exports.editProduct = (productId, productData) => {
     return Auction.findByIdAndUpdate(productId, productData, { runValidators: true });

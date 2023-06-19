@@ -34,7 +34,6 @@
                             Current price: $<strong>{{foundAuction.price}}</strong>
                         </div>
 
-                        <!-- If current user can place a bid -->
                         {{#unless isOwner}}
                         {{#if isHighestBidder}}
                         <div>
@@ -57,7 +56,6 @@
                             No bids
                         </div>
                         {{else}}
-                        <!-- TODO RENDER HIGHEST BIDDER NAME-->
                         <div>
                             Bid by {{foundAuction.bidder.firstname}} {{foundAuction.bidder.lastname}} 
                         </div>
