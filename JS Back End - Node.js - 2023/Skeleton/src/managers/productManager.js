@@ -9,5 +9,5 @@ exports.getProduct = (productId) => Game.findById(productId);
 exports.deleteProduct = (productId) => Game.findByIdAndDelete(productId);
 
 exports.editProduct = (productId, productData) => {
-    Game.findByIdAndUpdate(productId, productData, { runValidators: true });
+    return Game.findByIdAndUpdate(productId, productData, { runValidators: true });
 }

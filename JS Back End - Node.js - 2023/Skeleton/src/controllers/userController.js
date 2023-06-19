@@ -2,13 +2,15 @@ const router = require('express').Router();
 
 const userManager = require('../managers/userManager');
 
-const { errorMessageHandler } = require('../utils/errorMessageHandler')
+const { errorMessageHandler } = require('../utils/errorMessageHandler');
 
-router.get('/register', (req, res) => {
+const { limitUser } = require('../middlewares/authMiddleware')
+
+router.get('/register', limitUser, (req, res) => {
     res.render('./user/register');
 });
 
-router.post('/register', async (req, res) => {
+router.post('/register', limitUser, async (req, res) => {
     const { username, email, password, repeatPassword } = req.body;
 
     try {
@@ -21,7 +23,7 @@ router.post('/register', async (req, res) => {
     res.redirect('/');
 });
 
-router.get('/login', (req, res) => {
+router.get('/login', limitUser, (req, res) => {
     res.render('./user/login')
 });
 
@@ -33,10 +35,11 @@ router.post('/login', async (req, res) => {
 
         res.cookie('auth', token, { httpOnly: true });
 
-        res.redirect('/')
     } catch (error) {
         return res.render('./user/login', { errorMessage: errorMessageHandler(error) })
     }
+
+    res.redirect('/')
 });
 
 router.get('/logout', (req, res) => {

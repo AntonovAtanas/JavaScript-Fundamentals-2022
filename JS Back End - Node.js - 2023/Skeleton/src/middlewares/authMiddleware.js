@@ -29,3 +29,10 @@ exports.isAuth = (req, res, next) => {
 
     next();
 };
+
+exports.limitUser = (req, res, next) => {
+    if(req.user) {
+        return res.redirect('/')
+    } 
+    next()
+}

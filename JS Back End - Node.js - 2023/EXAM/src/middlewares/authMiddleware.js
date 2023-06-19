@@ -32,7 +32,7 @@ exports.isAuth = (req, res, next) => {
 
 exports.limitUser = (req, res, next) => {
     if(req.user) {
-        return res.redirect('/')
+        return res.render('404')
     } 
     next()
 }
