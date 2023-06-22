@@ -34,8 +34,6 @@ function tickets(arr: string[], criteria: string) {
 
     result.push(town);
   });
-
-  console.log(result);
 }
 
 tickets(
