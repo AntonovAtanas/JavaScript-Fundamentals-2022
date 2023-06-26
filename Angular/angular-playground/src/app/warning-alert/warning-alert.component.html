@@ -3,7 +3,7 @@
 
 <input type="text" name="username" [(ngModel)] = "username">
 
-<button (click)="warningClick()" [disabled]="username == ''">Reset!</button>
+<button (click)="onReset()" [disabled]="username == ''">Reset!</button>
 
 
 <p>Welcome, {{username}}</p>

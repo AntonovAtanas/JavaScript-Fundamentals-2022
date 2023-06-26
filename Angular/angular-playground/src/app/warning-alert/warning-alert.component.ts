@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 export class WarningAlertComponent {
   username: string = '';
 
-  warningClick() {
+  onReset() {
     this.username = '';
   }
 }
