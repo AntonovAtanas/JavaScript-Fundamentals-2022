@@ -1,4 +1,9 @@
-<p>Warning!</p>
-<button (click)="warningClick()">Warning</button>
-<warning-first></warning-first>
-<warning-second></warning-second>
+<h3>User data!</h3>
+<label for="username">Username</label>
+
+<input type="text" name="username" [(ngModel)] = "username">
+
+<button (click)="warningClick()" [disabled]="username == ''">Reset!</button>
+
+
+<p>Welcome, {{username}}</p>
