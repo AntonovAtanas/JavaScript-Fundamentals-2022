@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./warning-alert.component.css']
 })
 export class WarningAlertComponent {
-  
+  warningClick() {
+    console.log('Warning!')
+  }
 }
