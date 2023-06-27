@@ -9,13 +9,15 @@ export class AppComponent {
   title = 'directives-practice';
   hidePassword: string = 'block';
 
+  clickArr: number[] = [];
+
   passwordToggle(): void {
     if (this.hidePassword == 'block') {
       this.hidePassword = 'none'
     } else {
       this.hidePassword = 'block'
     }
-    console.log(this.hidePassword)
+    this.clickArr.push(this.clickArr.length + 1);
   };
 
   

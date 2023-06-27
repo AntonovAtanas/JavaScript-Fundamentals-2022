@@ -1,2 +1,8 @@
 <button (click)="passwordToggle()">Display Details</button>
 <p [ngStyle]="{display: hidePassword}">Secret password = tuna</p>
+<ul>
+  <ng-container *ngFor="let click of clickArr">
+    <li *ngIf="click < 5">You clicked on the button {{click}} times</li>
+    <li *ngIf="click >= 5" [ngStyle]="{'background-color': 'blue'}">You clicked on the button {{click}} times</li>
+  </ng-container>
+</ul>
