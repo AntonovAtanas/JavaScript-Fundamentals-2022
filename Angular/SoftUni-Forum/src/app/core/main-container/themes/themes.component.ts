@@ -15,6 +15,7 @@ export class ThemesComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.getThemes().subscribe(res => {
+      res.sort((a, b) => b.subscribers.length - a.subscribers.length)
       this.allThemes = [...res]
     })
   }
