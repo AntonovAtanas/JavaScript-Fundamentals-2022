@@ -7,6 +7,8 @@ import { MainContainerComponent } from './core/main-container/main-container.com
 import { FooterComponent } from './core/footer/footer.component';
 import { ThemesComponent } from './core/main-container/themes/themes.component';
 import { AsideComponent } from './core/main-container/aside/aside.component';
+import { ApiService } from './services/api.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,10 @@ import { AsideComponent } from './core/main-container/aside/aside.component';
     MainContainerComponent,
     FooterComponent,
     ThemesComponent,
-    AsideComponent
+    AsideComponent,
   ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, HttpClientModule],
+  providers: [ApiService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
