@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 
-import {Theme} from '../../../interfaces/Theme'
+import { Theme } from '../../../interfaces/Theme';
 
 @Component({
   selector: 'app-themes',
@@ -14,9 +14,9 @@ export class ThemesComponent implements OnInit {
   constructor(private api: ApiService) {}
 
   ngOnInit(): void {
-    this.api.getThemes().subscribe(res => {
-      res.sort((a, b) => b.subscribers.length - a.subscribers.length)
-      this.allThemes = [...res]
-    })
+    this.api.getThemes().subscribe((res) => {
+      res.sort((a, b) => b.subscribers.length - a.subscribers.length);
+      this.allThemes = [...res];
+    });
   }
 }
