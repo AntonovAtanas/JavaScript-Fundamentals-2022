@@ -7,4 +7,5 @@ export interface Theme {
   themeName: string;
   updatedAt: string;
   userId: User;
+  __v: number;
 }
