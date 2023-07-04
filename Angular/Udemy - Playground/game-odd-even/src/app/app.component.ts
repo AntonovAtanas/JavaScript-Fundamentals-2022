@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'game-odd-even';
+
+  allNumbers: number[] = []
+
+  numberListener (intervalNumber: number) {
+    this.allNumbers.push(intervalNumber);
+  }
 }
