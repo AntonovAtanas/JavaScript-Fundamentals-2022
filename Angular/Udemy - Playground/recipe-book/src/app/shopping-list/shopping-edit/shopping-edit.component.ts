@@ -18,7 +18,6 @@ export class ShoppingEditComponent implements OnInit {
   addIngredient(name: string, amount: number) {
     const ingredient = new Ingredient(name, amount)
     this.newIngredient.emit(ingredient)
-
   }
 
 }
