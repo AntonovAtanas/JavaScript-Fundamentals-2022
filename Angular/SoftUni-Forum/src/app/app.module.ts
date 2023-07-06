@@ -11,6 +11,7 @@ import { ApiService } from './services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './core/main-container/home/home.component';
+import { AddThemeComponent } from './core/main-container/themes/add-theme/add-theme.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HomeComponent } from './core/main-container/home/home.component';
     ThemesComponent,
     AsideComponent,
     HomeComponent,
+    AddThemeComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [ApiService],
