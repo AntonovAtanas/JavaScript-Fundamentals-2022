@@ -8,7 +8,9 @@ import { FooterComponent } from './core/footer/footer.component';
 import { ThemesComponent } from './core/main-container/themes/themes.component';
 import { AsideComponent } from './core/main-container/aside/aside.component';
 import { ApiService } from './services/api.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './core/main-container/home/home.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +20,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     FooterComponent,
     ThemesComponent,
     AsideComponent,
+    HomeComponent,
   ],
-  imports: [BrowserModule, HttpClientModule],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [ApiService],
   bootstrap: [AppComponent],
 })
