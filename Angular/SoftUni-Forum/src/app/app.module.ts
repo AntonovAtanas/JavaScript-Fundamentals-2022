@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './core/main-container/home/home.component';
 import { AddThemeComponent } from './core/main-container/themes/add-theme/add-theme.component';
+import { LoginComponent } from './core/main-container/user/login/login.component';
+import { RegisterComponent } from './core/main-container/user/register/register.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { AddThemeComponent } from './core/main-container/themes/add-theme/add-th
     AsideComponent,
     HomeComponent,
     AddThemeComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [ApiService],
