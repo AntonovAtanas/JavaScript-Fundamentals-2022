@@ -9,7 +9,8 @@ import { LoginComponent } from './core/main-container/user/login/login.component
 import { RegisterComponent } from './core/main-container/user/register/register.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent, pathMatch: 'full'},
+  {path: '', pathMatch: 'full', redirectTo: '/home'},
+  {path: 'home', component: HomeComponent},
   {path: 'themes', component: ThemesComponent},
   {path: 'themes/add', component: AddThemeComponent},
   {path: 'user/login', component: LoginComponent},
