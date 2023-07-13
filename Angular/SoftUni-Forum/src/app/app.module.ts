@@ -12,8 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './core/main-container/home/home.component';
 import { AddThemeComponent } from './core/main-container/themes/add-theme/add-theme.component';
-import { LoginComponent } from './core/main-container/user/login/login.component';
-import { RegisterComponent } from './core/main-container/user/register/register.component';
+import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
+import { UserRoutingModule } from './user/user-routing.module';
 
 @NgModule({
   declarations: [
@@ -26,9 +27,9 @@ import { RegisterComponent } from './core/main-container/user/register/register.
     HomeComponent,
     AddThemeComponent,
     LoginComponent,
-    RegisterComponent,
+    RegisterComponent
   ],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule, UserRoutingModule],
   providers: [ApiService],
   bootstrap: [AppComponent],
 })
