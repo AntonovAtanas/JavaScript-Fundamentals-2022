@@ -4,7 +4,7 @@
     <div class="theme-container" *ngFor="let theme of allThemes">
         <div class="theme-name-wrapper">
             <div class="theme-name">
-                <a href="#" class="normal">
+                <a [routerLink]="theme._id" class="normal">
                     <h2>{{theme.themeName}}</h2>
                 </a>
                 <div class="columns">

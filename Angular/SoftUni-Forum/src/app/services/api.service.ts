@@ -17,5 +17,9 @@ export class ApiService {
 
   latestPosts(posts?: number) {
     return this.http.get<Post[]>(`${api.serverUrl}/posts${posts ? `?limit=${posts}` : ''}`)
-  }
+  };
+
+  getTheme(themeId: string){
+    return this.http.get<Theme>(`${api.serverUrl}/themes/${themeId}`)
+  };
 }
