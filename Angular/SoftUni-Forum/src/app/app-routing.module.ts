@@ -3,15 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { Routes, RouterModule } from '@angular/router'; // CLI imports router
 import { HomeComponent } from './core/main-container/home/home.component';
-import { ThemesComponent } from './core/main-container/themes/themes.component';
-import { AddThemeComponent } from './core/main-container/themes/add-theme/add-theme.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/home'},
   {path: 'home', component: HomeComponent},
-  {path: 'themes', component: ThemesComponent},
-  {path: 'themes/add', component: AddThemeComponent},
-  
 ];
 
 @NgModule({
