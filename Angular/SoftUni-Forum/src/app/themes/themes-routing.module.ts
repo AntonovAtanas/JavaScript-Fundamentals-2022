@@ -4,9 +4,16 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router'; // CLI imports router
 import { ThemesComponent } from './all-themes/themes.component';
 import { AddThemeComponent } from './add-theme/add-theme.component';
+import { DetailsThemeComponent } from './details-theme/details-theme.component';
 
 const routes: Routes = [
-  { path: 'themes', component: ThemesComponent },
+  {
+    path: 'themes',
+    children: [
+      { path: '', pathMatch: 'full', component: ThemesComponent },
+      { path: 'details/:themeId', component: DetailsThemeComponent}
+    ],
+  },
   { path: 'themes/add', component: AddThemeComponent },
 ];
 
@@ -15,4 +22,4 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ThemesRoutingModule {}
+export class ThemesRoutingModule { }

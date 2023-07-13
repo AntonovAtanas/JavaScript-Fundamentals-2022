@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemesRoutingModule } from './themes-routing.module';
+import { DetailsThemeComponent } from './details-theme/details-theme.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    DetailsThemeComponent
+  ],
   imports: [
     CommonModule,
     ThemesRoutingModule
