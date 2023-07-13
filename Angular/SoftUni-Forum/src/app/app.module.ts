@@ -13,9 +13,9 @@ import { HomeComponent } from './core/main-container/home/home.component';
 import { AddThemeComponent } from './themes/add-theme/add-theme.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
-import { UserRoutingModule } from './user/user-routing.module';
 import { ThemesComponent } from './themes/all-themes/themes.component';
-import { ThemesRoutingModule } from './themes/themes-routing.module';
+import { UserModule } from './user/user.module';
+import { ThemesModule } from './themes/themes.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { ThemesRoutingModule } from './themes/themes-routing.module';
     LoginComponent,
     RegisterComponent
   ],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule, UserRoutingModule, ThemesRoutingModule],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule, UserModule, ThemesModule],
   providers: [ApiService],
   bootstrap: [AppComponent],
 })
