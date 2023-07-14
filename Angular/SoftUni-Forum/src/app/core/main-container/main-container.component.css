@@ -4,5 +4,7 @@ main {
 
 /* theme list item */
 
-
+app-themes {
+    width: 65%;
+}
 
