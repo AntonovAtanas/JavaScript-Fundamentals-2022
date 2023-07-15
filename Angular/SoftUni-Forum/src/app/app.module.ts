@@ -16,6 +16,7 @@ import { RegisterComponent } from './user/register/register.component';
 import { ThemesComponent } from './themes/all-themes/themes.component';
 import { UserModule } from './user/user.module';
 import { ThemesModule } from './themes/themes.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -25,12 +26,11 @@ import { ThemesModule } from './themes/themes.module';
     FooterComponent,
     ThemesComponent,
     AsideComponent,
-    HomeComponent,
     AddThemeComponent,
     LoginComponent,
     RegisterComponent
   ],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule, UserModule, ThemesModule],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule, UserModule, ThemesModule, SharedModule],
   providers: [ApiService],
   bootstrap: [AppComponent],
 })

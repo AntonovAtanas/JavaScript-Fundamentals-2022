@@ -24,4 +24,9 @@ export class ThemesComponent implements OnInit {
   get isLogged(): boolean {
     return this.userService.isLogged;
   }
+
+  // TODO: 
+  get hasLiked(): boolean {
+    return true;
+  }
 }

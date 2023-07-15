@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemesRoutingModule } from './themes-routing.module';
 import { DetailsThemeComponent } from './details-theme/details-theme.component';
-
-
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +10,8 @@ import { DetailsThemeComponent } from './details-theme/details-theme.component';
   ],
   imports: [
     CommonModule,
-    ThemesRoutingModule
+    ThemesRoutingModule,
+    SharedModule
   ]
 })
 export class ThemesModule { }
