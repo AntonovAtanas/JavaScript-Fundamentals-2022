@@ -1,7 +1,7 @@
-<app-home></app-home>
+
     <!-- theme content  -->
     <div class="theme-content" *ngIf="currentTheme">
-      
+        <app-home *ngIf="!isLogged"></app-home>
         <!-- theme-title  -->
         <div class="theme-title">
             <div class="theme-name-wrapper">
@@ -30,14 +30,14 @@
                 </div>
             </div>
             <div class="footer">
-                <!-- <i class="fas fa-thumbs-up"></i>
-                <i class="fas fa-thumbs-down"></i> -->
+                <i class="fas fa-thumbs-up" *ngIf="isLogged"></i>
+                <i class="fas fa-thumbs-down" *ngIf="isLogged"></i>
                 <p><span>{{comment.likes.length}}</span> likes</p>
             </div>
         </div>
 
-        <div class="answer-comment">
-            <p><span>currentUser</span> comment:</p>
+        <div class="answer-comment" *ngIf="isLogged">
+            <p><span>{{username}}</span> comment:</p>
             <div class="answer">
                 <form>
                     <textarea name="postText" id="comment" cols="30" rows="10"></textarea>
