@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-theme',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AddThemeComponent {
 
+  constructor(private router: Router){}
+
+  onCancel(): void{
+    this.router.navigate(['home'])
+  }
 }
