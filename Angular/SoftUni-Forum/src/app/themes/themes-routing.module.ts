@@ -12,7 +12,7 @@ const routes: Routes = [
     path: 'themes',
     children: [
       { path: '', pathMatch: 'full', component: MainContainerComponent },
-      { path: ':themeId', component: DetailsThemeComponent },
+      { path: ':themeId', component: DetailsThemeComponent }
     ],
   },
 ];
