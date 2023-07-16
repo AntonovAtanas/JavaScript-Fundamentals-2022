@@ -9,7 +9,6 @@ import { AsideComponent } from './posts/aside.component';
 import { ApiService } from './services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './shared/home/home.component';
 import { AddThemeComponent } from './themes/add-theme/add-theme.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';

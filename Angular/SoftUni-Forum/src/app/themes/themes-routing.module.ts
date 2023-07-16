@@ -5,9 +5,10 @@ import { Routes, RouterModule } from '@angular/router'; // CLI imports router
 import { AddThemeComponent } from './add-theme/add-theme.component';
 import { DetailsThemeComponent } from './details-theme/details-theme.component';
 import { MainContainerComponent } from '../core/main-container/main-container.component';
+import { AuthGuard } from '../services/auth.activate';
 
 const routes: Routes = [
-  { path: 'themes/add', component: AddThemeComponent },
+  { path: 'themes/add', component: AddThemeComponent, canActivate: [AuthGuard] },
   {
     path: 'themes',
     children: [
