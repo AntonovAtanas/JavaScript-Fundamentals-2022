@@ -17,6 +17,7 @@ import { ThemesComponent } from './themes/all-themes/themes.component';
 import { UserModule } from './user/user.module';
 import { ThemesModule } from './themes/themes.module';
 import { SharedModule } from './shared/shared.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -28,9 +29,17 @@ import { SharedModule } from './shared/shared.module';
     AsideComponent,
     AddThemeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PageNotFoundComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule, UserModule, ThemesModule, SharedModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    UserModule,
+    ThemesModule,
+    SharedModule,
+    AppRoutingModule
+  ],
   providers: [ApiService],
   bootstrap: [AppComponent],
 })
