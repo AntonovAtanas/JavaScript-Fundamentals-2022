@@ -1,13 +1,13 @@
 <div class="container">
 
-    <form action="" method="post">
+    <form #f="ngForm" (ngSubmit)="onSubmit()">
       
       <fieldset>
         <h1>Registration Form</h1>
   
         <p class="field field-icon">
           <label for="username"><span><i class="fas fa-user"></i></span></label>
-          <input type="text" name="username" id="username" class="error" placeholder="Mark Ulrich">
+          <input type="text" name="username" id="username" class="error" placeholder="Mark Ulrich" ngModel>
         </p>
   
         <!-- if error -->
@@ -18,32 +18,34 @@
         
         <p class="field field-icon">
           <label for="email"><span><i class="fas fa-envelope"></i></span></label>
-          <input type="text" name="email" id="email" placeholder="marк@gmial.com">
+          <input type="text" name="email" id="email" placeholder="marк@gmial.com" ngModel>
         </p>
   
         <p class="field field-icon">
-          <label for="tel"><span><i class="fas fa-phone"></i></span></label>
-          <select name="tel" id="tel" class="tel">
-            <option value="1">+359</option>
+          <label for="code"><span><i class="fas fa-phone"></i></span></label>
+          <select name="code" id="code" class="code" ngModel [(ngModel)]="defaultCode">
+            <option *ngFor="let phone of phoneCodes" [value]="phone">{{phone}}</option>
           </select>
-          <input type="text" name="tel" id="tel" placeholder="888 888">
+          <input type="text" name="tel" id="tel" placeholder="888 888" ngModel>
         </p>
   
         <p class="field field-icon">
           <label for="building"><span><i class="fas fa-building"></i></span></label>
-          <select name="building" id="building" class="building">
-            <option value="1">Designer</option>
+          <select name="building" id="building" class="building" ngModel [(ngModel)]="defaultJob">
+            <option *ngFor="let job of jobs"
+            [value]="job"
+            >{{job}}</option>
           </select>
         </p>
   
         <p class="field field-icon">
           <label for="password"><span><i class="fas fa-lock"></i></span></label>
-          <input type="password" name="password" id="password" placeholder="******">
+          <input type="password" name="password" id="password" placeholder="******" ngModel>
         </p>
   
         <p class="field field-icon">
           <label for="re-password"><span><i class="fas fa-lock"></i></span></label>
-          <input type="re-password" name="re-password" id="re-password" placeholder="******">
+          <input type="re-password" name="re-password" id="re-password" placeholder="******" ngModel>
         </p>
   
         <p>
