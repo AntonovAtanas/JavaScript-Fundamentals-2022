@@ -6,7 +6,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css']
 })
-export class RegisterFormComponent implements AfterViewInit {
+export class RegisterFormComponent {
 
   @ViewChild ('f') registerForm!: NgForm
 
@@ -16,15 +16,7 @@ export class RegisterFormComponent implements AfterViewInit {
   phoneCodes: string[] = ['+359', '+07', '+02'];
   defaultCode: string = '+359';
 
-
-
-  ngAfterViewInit(): void {
-    // console.log(`After View Init`, this.registerForm)
-  }
-
   onSubmit(): void{
-    console.log(`onSubmit`, this.registerForm.form.value);
-
     this.registerForm.reset()
   }
 }
