@@ -48,35 +48,40 @@
                 </select>
             </p>
 
-            <p class="field field-icon">
-                <label for="password"><span><i class="fas fa-lock"></i></span></label>
-                <input type="password" name="password" id="password" placeholder="******" ngModel required
-                    pattern="[\w\d]{3,16}" #password="ngModel" />
-            </p>
 
-            <!-- Error message if password is invalid-->
-            <p class="error" *ngIf="!password.valid && password.touched">
-                Please enter password between 3 and 16 symbols
-            </p>
+            <div ngModelGroup="userData" #userPassword="ngModelGroup">
 
-            <p class="field field-icon">
-                <label for="re-password"><span><i class="fas fa-lock"></i></span></label>
-                <input type="password" name="re-password" id="re-password" placeholder="******" ngModel required
-                    #rePassword="ngModel" />
-            </p>
+                <p class="field field-icon">
+                    <label for="password"><span><i class="fas fa-lock"></i></span></label>
+                    <input type="password" name="password" id="password" placeholder="******" ngModel required
+                        pattern="[\w\d]{3,16}" #password="ngModel" />
+                </p>
 
-            <!-- Error message if re-password do not match is invalid-->
-            <p class="error" *ngIf="rePassword.value !== password.value">
-                Passwords do not match!
-            </p>
+                <!-- Error message if password is invalid-->
+
+                <p class="error" *ngIf="!password.valid && password.touched">
+                    Please enter password between 3 and 16 symbols
+                </p>
+
+                <p class="field field-icon">
+                    <label for="re-password"><span><i class="fas fa-lock"></i></span></label>
+                    <input type="password" name="re-password" id="re-password" placeholder="******" ngModel required
+                        #rePassword="ngModel"/>
+                </p>
+
+                <!-- Error message if re-password do not match is invalid -->
+                <p class="error" *ngIf="userPassword.value.password !== userPassword.value['re-password'] && userPassword.touched">
+                    Passwords do not match!
+                </p>
+            </div>
 
             <p>
-                <button [disabled]="!f.valid" >Create Account</button>
+                <button [disabled]="!f.valid">Create Account</button>
             </p>
 
             <p class="text-center">
                 Have an account?
-                <a href="" >Log In</a>
+                <a href="">Log In</a>
             </p>
         </fieldset>
     </form>
