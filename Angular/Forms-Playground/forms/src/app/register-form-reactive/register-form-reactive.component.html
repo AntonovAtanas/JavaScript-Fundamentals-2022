@@ -1,6 +1,6 @@
 <div class="container">
 
-    <form [formGroup]="registerForm" (submit)="onSubmit()">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
         <fieldset>
             <h1>Registration Form</h1>
@@ -64,10 +64,11 @@
             <p class="error" *ngIf="!registerForm.get('userPassword.rePassword')?.valid && registerForm.get('userPassword.rePassword')?.touched">
                 Incorrect re-password
             </p>
+
         </div>
 
             <p>
-                <button>Create Account</button>
+                <button type="submit" [disabled]="!registerForm.valid">Create Account</button>
             </p>
 
             <p class="text-center">
