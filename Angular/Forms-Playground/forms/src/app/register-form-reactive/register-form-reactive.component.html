@@ -61,8 +61,8 @@
                 <input type="password" name="re-password" id="re-password" placeholder="******" formControlName="rePassword">
             </p>
             
-            <p class="error" *ngIf="!registerForm.get('userPassword.rePassword')?.valid && registerForm.get('userPassword.rePassword')?.touched">
-                Incorrect re-password
+            <p class="error" *ngIf="registerForm.get('userPassword')?.errors?.['passwordMissmatch']">
+                Passwords do not match
             </p>
 
         </div>
