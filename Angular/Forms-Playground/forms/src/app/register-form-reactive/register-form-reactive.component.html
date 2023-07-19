@@ -1,6 +1,6 @@
 <div class="container">
 
-    <form [formGroup]="registerForm">
+    <form [formGroup]="registerForm" (submit)="onSubmit()">
 
         <fieldset>
             <h1>Registration Form</h1>
@@ -23,27 +23,27 @@
 
             <p class="field field-icon">
                 <label for="tel"><span><i class="fas fa-phone"></i></span></label>
-                <select name="tel" id="tel" class="tel" formControlName="code">
-                    <option value="1">+359</option>
+                <select name="tel" id="tel" class="tel" formControlName="code" >
+                    <option *ngFor="let code of phoneCodes" [value]="code">{{code}}</option>
                 </select>
                 <input type="text" name="tel" id="tel" placeholder="888 888" formControlName="tel">
             </p>
 
             <p class="field field-icon">
                 <label for="building"><span><i class="fas fa-building"></i></span></label>
-                <select name="building" id="building" class="building" formControlName="job">
-                    <option value="1">Designer</option>
+                <select name="building" id="building" class="building" formControlName="job" formControlName="job">
+                    <option *ngFor="let job of jobs" [value]="job">{{job}}</option>
                 </select>
             </p>
 
             <p class="field field-icon">
                 <label for="password"><span><i class="fas fa-lock"></i></span></label>
-                <input type="password" name="password" id="password" placeholder="******" formControlName="password">
+                <input type="password" name="password" id="password" placeholder="******" formControlName="password" >
             </p>
 
             <p class="field field-icon">
                 <label for="re-password"><span><i class="fas fa-lock"></i></span></label>
-                <input type="re-password" name="re-password" id="re-password" placeholder="******" formControlName="rePassword">
+                <input type="password" name="re-password" id="re-password" placeholder="******" formControlName="rePassword">
             </p>
 
             <p>
