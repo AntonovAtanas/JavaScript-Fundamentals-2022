@@ -13,6 +13,7 @@ export class RegisterFormReactiveComponent implements OnInit {
     this.registerForm = new FormGroup({
       'name': new FormControl(null),
       'email': new FormControl(null),
+      'code': new FormControl(null),
       'tel': new FormControl(null),
       'job': new FormControl(null),
       'password': new FormControl(null),
