@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register-form-reactive',
@@ -15,13 +15,16 @@ export class RegisterFormReactiveComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
-      'name': new FormControl(null),
-      'email': new FormControl(null),
-      'code': new FormControl('+02'),
-      'tel': new FormControl(),
-      'job': new FormControl('Programmer'),
-      'password': new FormControl(null),
-      'rePassword': new FormControl(null),
+
+      'name': new FormControl(null, [Validators.required, Validators.pattern(/[A-Z][a-z]* [A-Z][a-z]*/)]),
+      'email': new FormControl(null, [Validators.email, Validators.required]),
+      'code': new FormControl('+02', Validators.required),
+      'tel': new FormControl(null, [Validators.required, Validators.pattern(/^\d{9}$/)]),
+      'job': new FormControl('Programmer', Validators.required),
+      'userPassword': new FormGroup({
+        'password': new FormControl(null, [Validators.required, Validators.pattern(/[\w\d]{3,16}/)]),
+        'rePassword': new FormControl(null, [Validators.required, Validators.pattern(/[\w\d]{3,16}/)]),
+      }), 
     })
   };
 
