@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { arePasswordsSame } from './password-checker';
 
 @Component({
   selector: 'app-register-form-reactive',
@@ -25,13 +26,12 @@ export class RegisterFormReactiveComponent implements OnInit {
         'password': new FormControl(null, [Validators.required, Validators.pattern(/[\w\d]{3,16}/)]),
         'rePassword': new FormControl(null, [Validators.required, Validators.pattern(/[\w\d]{3,16}/)]),
         }, {
-          validators: this.arePasswordsSame
+          validators: arePasswordsSame
         })
     })
   };
 
   onSubmit(){
-    console.log('submitted')
     this.registerForm.reset({
       'code': '+02',
       'job': 'Programmer'
@@ -39,15 +39,5 @@ export class RegisterFormReactiveComponent implements OnInit {
   };
 
 
-  arePasswordsSame(control: AbstractControl): ValidationErrors | null {
-    const password = control.get('password');
-    const rePassword = control.get('rePassword');
 
-    if (password?.value !== rePassword?.value){
-      return {
-        passwordMissmatch: true
-      }
-    }
-    return null
-  }
 }
