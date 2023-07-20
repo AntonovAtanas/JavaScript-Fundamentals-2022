@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { arePasswordsSame } from './password-checker';
 
 @Component({
@@ -37,7 +37,4 @@ export class RegisterFormReactiveComponent implements OnInit {
       'job': 'Programmer'
     });
   };
-
-
-
 }

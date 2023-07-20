@@ -83,3 +83,8 @@ p.error {
 .input-error {
     border-left-color: red;
 }
+
+input.ng-invalid.ng-touched {
+    border-left: 5px solid #A94442;
+    /* red */
+}

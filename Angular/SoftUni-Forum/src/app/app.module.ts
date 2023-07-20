@@ -17,6 +17,7 @@ import { UserModule } from './user/user.module';
 import { ThemesModule } from './themes/themes.module';
 import { SharedModule } from './shared/shared.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     UserModule,
     ThemesModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],
