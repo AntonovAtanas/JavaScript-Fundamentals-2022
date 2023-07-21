@@ -1,18 +1,75 @@
 <div class="container">
-    <div class="profile"><img src="../../../assets/profile.png" alt="default user">
+
+    <!-- VIEW PROFILE -->
+    <div class="profile"><img src="../../../assets/profile.png" alt="default user" >
         <h3>User Info:</h3>
+        <ng-container *ngIf="showEdit == false">
         <div class="flex">
             <p>Username: </p>
-            <p>Johny</p>
+            <p value="Johny">{{userData.username}}</p>
         </div>
         <div class="flex">
             <p>Email: </p>
-            <p>john.doe@gmail.com</p>
+            <p textContent="john.doe@gmail.com">{{userData.email}}</p>
         </div>
         <div class="flex">
             <p>Phone: </p>
-            <p>+359 885 888 888</p>
+            <p #tel value="+359 885 888 888">{{userData.tel}}</p>
         </div>
-        <button class="edit-button">Edit</button>
+        <button class="edit-button" (click)="toggleEdit()">Edit</button>
+    </ng-container>
+
+
+    <!-- EDIT PROFILE -->
+    <ng-container *ngIf="showEdit == true">
+        <form #form="ngForm" (ngSubmit)="onEdit(form)">
+            <!-- username -->
+            <div class="flex">
+                <p>Username: </p>
+                <input type="text"  name="username" id="username" value="{{userData.username}}" 
+                required 
+                ngModel 
+                minlength="5"
+                #username="ngModel">
+            </div>
+
+            <p class="error" *ngIf="username.errors?.['minlength'] && username.touched">Username should have minimum 5 characters</p>
+            <p class="error" *ngIf="username.errors?.['required'] && username.touched">Username is required</p>
+            
+            <!-- email -->
+            <div class="flex">
+                <p>Email: </p>
+                <input type="email" name="email" id="email" value="{{userData.email}}"
+                pattern="^[a-zA-Z0-9._%+-]{6,}@gmail\.(bg|com)$"
+                required
+                #email="ngModel"
+                ngModel
+                >
+            </div>
+
+            <p class="error" *ngIf="email.errors?.['pattern'] && email.touched">Invalid email</p>
+            <p class="error" *ngIf="email.errors?.['required'] && email.touched">Email is required</p>
+
+
+            <!-- tel -->
+            <div class="flex">
+                <p>Phone: </p>
+                <div>
+                    <select name="select-tel" id="select-tel" class="tel">
+                        <option value="+359">+359</option>
+                    </select>
+                    <input type="text" name="tel" id="tel" value="{{userData.tel}}"
+                    #tel="ngModel"
+                    ngModel
+                    >
+                </div>
+            </div>
+            <button class="red-button" (click)="onCancel()">Cancel</button>
+            <button [disabled]="form.invalid" class="green-button" type="submit">Save</button>
+        </form>
+
+    </ng-container>
     </div>
+
+    {{showEdit}}
 </div>

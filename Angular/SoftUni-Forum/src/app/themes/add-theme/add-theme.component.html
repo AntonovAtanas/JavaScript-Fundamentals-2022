@@ -3,30 +3,34 @@
         <div class="header-background">
             <span>New Theme</span>
         </div>
-        <form method="post" action="">
+        <form method="post" #f="ngForm">
+            <!-- TITLE -->
             <div class="new-theme-title">
                 <label for="themeName">Title <span class="red">*</span></label>
-                <input type="text" name="themeName" id="themeName" #themeName>
-                <p class="error">
+                <input type="text" name="themeName" id="themeName" #themeName="ngModel" ngModel required minlength="5">
+
+                <p class="error" *ngIf="themeName.errors?.['required'] && themeName.touched">
                     Theme name is required.
                 </p>
-                <p class="error">
+                <p class="error" *ngIf="themeName.errors?.['minlength'] && themeName.touched">
                     Theme name must be at least 5 characters long.
                 </p>
             </div>
+
+            <!-- TEXT -->
             <div class="new-theme-content">
                 <label for="postText">Post <span class="red">*</span></label>
-                <textarea type="text" name="postText" id="postText" rows="8" class="height" #postText></textarea>
-                <p class="error">
+                <textarea type="text" name="postText" id="postText" rows="8" class="height" #postText="ngModel" ngModel required minlength="10"></textarea>
+                <p class="error" *ngIf="postText.errors?.['required'] && postText.touched">
                     The field with your post is required.
                 </p>
-                <p class="error">
+                <p class="error" *ngIf="postText.errors?.['minlength'] && postText.touched">
                     Post must be at least 10 characters long.
                 </p>
             </div>
             <div class="new-theme-buttons">
                 <button class="cancel" (click)="onCancel()">Cancel</button>
-                <button class="public" (click)="onSubmit(themeName.value, postText.value)">Post</button>
+                <button class="public" [disabled]="f.invalid" (click)="onSubmit(themeName.value, postText.value)">Post</button>
             </div>
 
         </form>

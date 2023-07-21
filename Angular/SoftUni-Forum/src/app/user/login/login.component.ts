@@ -14,10 +14,8 @@ export class LoginComponent {
 
 
   onSubmit(form: NgForm): void{
-
-    console.log(form)
-
-    // this.userService.login();
-    // this.router.navigate(['home']);
+    // TODO
+    this.userService.login();
+    this.router.navigate(['home']);
   }
 }
