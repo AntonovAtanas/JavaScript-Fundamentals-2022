@@ -14,8 +14,9 @@
                 pattern="^[a-zA-Z0-9._%+-]{6,}@gmail\.(bg|com)$"
                 >
             </p>
-            <ng-container *ngIf="email.touched">
 
+            <!-- email error container -->
+            <ng-container *ngIf="email.touched">
                 <p class="error" *ngIf="email.errors?.['required']">
                     Email is required!
                 </p>
@@ -34,6 +35,8 @@
                 minlength="5"
                 >
             </p>
+            
+            <!-- password error container -->
             <ng-container *ngIf="password.touched">
             <p class="error" *ngIf="password.errors?.['required']">
                 Password is required!
@@ -42,7 +45,6 @@
                 Password must be at least 5 characters!
             </p> 
             </ng-container>
-
 
             <button>Login</button>
 
