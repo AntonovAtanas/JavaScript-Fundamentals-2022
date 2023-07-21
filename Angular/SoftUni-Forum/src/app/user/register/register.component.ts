@@ -7,7 +7,8 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
+
   onRegister(form: NgForm) {
-    console.log(form.value)
+    console.log(form)
   }
 }
