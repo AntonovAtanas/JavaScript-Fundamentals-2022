@@ -1,0 +1,32 @@
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(238, 238, 238);
+    height: 100vh;
+    font-family: Helvetica, sans-serif;
+}
+
+header {
+    border-bottom: 3px solid black;
+}
+
+header h1 {
+    padding-left: 30px;
+}
+
+main {
+    padding: 35px 30px;
+    flex: 1;
+}
+
+footer {
+    background-color: rgb(102, 102, 102);
+    color: rgb(255, 255, 255);
+    padding: 18px 30px;
+}

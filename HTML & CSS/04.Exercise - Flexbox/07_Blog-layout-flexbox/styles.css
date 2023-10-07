@@ -1,0 +1,68 @@
+body {
+    background-color: rgb(238, 238, 238);
+    padding: 25px 70px;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    border-bottom: 2px solid black;
+}
+
+.container {
+    display: flex;
+    gap: 48px;
+}
+
+main {
+    flex: 4;
+}
+
+aside {
+    flex: 2;
+}
+
+aside li a{
+    color: rgb(0, 153, 0);
+    text-decoration: none;
+}
+
+h2 {
+    font-family: Georgia, serif;
+}
+
+.img {
+    float: right;
+    border: 3px solid black;
+    padding: 8px;
+    background-color: white;
+    margin-left: 18px;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.2);
+}
+
+blockquote {
+    width: 320px;
+    float: right;
+    color: grey;
+    font-style: italic;
+    border-left: 2px solid lightgrey;
+    padding-left: 18px;
+    font-family: Georgia, serif;
+
+}
+
+blockquote p {
+    float: right;
+}
+
+.article-2 img {
+    float: left;
+    margin-right: 18px;
+    margin-left: 0;
+
+}

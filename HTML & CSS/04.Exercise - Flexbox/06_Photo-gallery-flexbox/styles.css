@@ -1,0 +1,30 @@
+
+
+body {
+    box-sizing: border-box;
+    padding: 50px;
+    background-color: #EEE;
+}
+
+body, ul {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+li {
+    display: flex;
+    list-style-type: none;
+    padding: 24px 8px;
+    border: 6px solid black;
+    align-items: center;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.2);
+    background-color: white;
+}
+
+img {
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.2);
+}
+
+
