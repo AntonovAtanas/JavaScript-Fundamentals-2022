@@ -1,0 +1,30 @@
+
+.card1, .card2 {
+    display: flex;
+    justify-content: center;
+}
+
+.content-wrapper {
+    position: relative;
+}
+
+.card1 {
+    background: linear-gradient(90deg, rgba(24,91,157,1) 0%, rgba(67,205,162,1) 96%);
+    padding: 100px;
+}
+
+.card2 {
+    background: linear-gradient(90deg, rgba(168,50,120,1) 0%, rgba(211,130,19,1) 96%);
+    padding: 15px 100px;
+}
+
+img {
+}
+
+svg {
+    fill: #ffffff;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
