@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans|PT+Serif');
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'PT', sans-serif;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.navigation-bar {
+    background-color: #d11919;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.7em 2em;
+}
+
+.tel, .address, .contacts {
+    display: flex;
+    gap: 8px;
+    color: white;
+    font-size: 14px;
+}
+
+.navigation-hero {
+    position: relative;
+}
+
+.navigation-menu {
+    list-style-type: none;
+    display: flex;
+    gap: 4em;
+}
+
+.navigation-menu a {
+    color: rgb(240, 240, 240);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 100;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.hero-content {
+    position: absolute;
+    top: 0;
+    right: 5%;
+    padding-top: 2em;
+}
+
+.navigation-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+
+.title {
+    font-size: 3em;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 0.2em;
+}
+
+.subtitle {
+    color: rgb(240, 240, 240);
+    text-align: center;
+    width: 480px;
+}
+
+.navigation-logo span {
+    background-color: #d11919;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+}
+
+.start-btn {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 700;
+}
+
+/* WELCOME */
+
+.welcome-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+
+.services {
+    display: flex;
+    gap: 8em;
+    align-items: center;
+    height: auto;
+}
+
+.separator {
+    width: 35px;
+    background-color: #d11919;
+    height: 4px;
+}
+
+.services-card {
+    width: 18em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+.services-card h4 {
+    color:#d11919;
+}
+
+.services-icon img {
+    width: auto;
+    height: 50px;
+}
+
+/* Coaches */
+
+.coaches-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    background-color: #efefef;
+    padding: 2em 8em;
+
+}
+
+.coaches-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 20em;
+    gap: 1em;
+}
+
+.coaches-card p {
+    color: grey;
+    font-size: 14px;
+    padding: 0 2em;
+}
+
+.coaches-card h5 {
+    color: #d11919;
+}
+
+/* footer */
+
+footer {
+    background-color: #d11919;
+    text-align: center;
+    padding: 0.7em 2em;
+    font-size: 14px;
+}
