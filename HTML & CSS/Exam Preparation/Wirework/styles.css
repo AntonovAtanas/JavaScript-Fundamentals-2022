@@ -8,3 +8,51 @@ html {
     font-family: Helvetica, sans-serif;
 }
 
+body {
+    padding: 0 12em;
+}
+
+/* navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 2em;
+}
+
+.logo {
+    display: flex;
+    gap: 1em;
+    height: 40px;
+    align-items: center;
+    color: #efefef;
+}
+
+.logo h2 {
+    color: #2A3639;
+}
+
+.logo hr {
+    height: 100%;
+    color: #485254;
+}
+
+.logo p {
+    color: #485254;
+}
+
+.navigation ul {
+    list-style-type: none;
+    display: flex;
+    gap: 2px;
+}
+
+.navigation ul li {
+    background-color: #ECECEC;
+    padding: 1em;
+}
+
+.navigation ul li:hover {
+    background-color: #E24E2A;
+    color: white;
+    cursor: pointer;
+}
