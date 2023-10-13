@@ -10,6 +10,8 @@ html {
 
 body {
     padding: 0 12em;
+    display: flex;
+    flex-direction: column;
 }
 
 /* navigation */
@@ -59,8 +61,64 @@ nav {
 
 /* banner */
 
+.banner {
+    height: 360px;
+}
+
 .banner img {
     width: 100%;
-    height: 360px;
+    height: 100%;
     object-fit: cover;
+}
+
+/* about */
+
+.about {
+    background-color: #E24E2A;
+    padding: 3em 8em;
+}
+
+.about p {
+    text-align: center;
+    font-size: 14px;
+    color: #F2B5A5;
+}
+
+.about p span {
+    text-decoration: underline;
+    color: white;
+}
+
+/* cards */
+
+.cards-holder {
+    background-color: #383838;
+    height: 250px;
+    display: flex;
+    padding: 12em 2em;
+    gap: 1em;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.card i {
+    padding: 1em;
+    background-color: #E24E2A;
+}
+
+.card .title {
+    color: white;
+
+}
+
+.card .description {
+    color: #5E5248;    
+    border-top: 1px solid #5E5248;
+    padding-top: 1em;
 }
