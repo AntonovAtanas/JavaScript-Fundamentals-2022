@@ -95,7 +95,7 @@ nav {
     background-color: #383838;
     height: 250px;
     display: flex;
-    padding: 12em 2em;
+    padding: 12em 4em;
     gap: 1em;
 }
 
@@ -126,7 +126,7 @@ nav {
 /* subbanner */
 
 .subbanner {
-    height: 200px;
+    height: 230px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -149,4 +149,41 @@ nav {
     background-color: #1B9772;
     padding: 1em 2em;
     color: white;
+}
+
+/* site map */
+
+.cards-holder.site-map {
+    align-items: center;
+}
+
+.site-map-card {
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+}
+
+.site-map h3{
+    color: white;
+    font-weight: 600;
+}
+
+.site-map p {
+    color: #4F4F4F;
+    font-size: 14px;
+}
+
+/* footer */
+
+footer {
+    height: 85px;
+    background-color: #1B9772;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+footer p {
+    color: #52AB82;
 }
