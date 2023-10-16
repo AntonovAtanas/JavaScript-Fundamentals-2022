@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Raleway'
+}
+
+body  {
+    padding: 3em;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+
+.sections {
+    background-color: #EFEFEF;
+    width: 100%;
+    height: 550px;
+}
+
+.menu {
+    display: flex;
+    justify-content: flex-end;
+    padding: 2em 1em;
+    gap: 1em;
+}
+
+.menu p {
+    font-size: 12px;
+}
+
+.burger {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+}
+
+hr {
+    width: 20px;
+    height: 3px;
+    background-color: black;
+}
+
+.header {
+    display: flex;
+    gap: 10em;
+    justify-content: center;
+    flex-shrink: 1;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    padding-top: 4em;
+}
+
+.header-content > p {
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.8;
+    width: 410px;
+}
+
+.header-title {
+    display: flex;
+    gap: 0.5em;
+}
+
+.header-title p {
+    font-size: 2.5em;
+}
+
+.jade-template {
+    font-weight: 200;
+}
+
+.separator {
+    height: 80px;
+    width: 2px;
+    background-color: black;
+}
+
+.header-img-wrapper img{
+    height: 470px;
+    width: auto;
+}
+
+
+/* camera */
+
+.camera {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6em;
+    padding: 2em 10em 2em 6em;
+}
+
+.camera-description {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.camera-img img {
+    height: 400px;
+}
+
+.camera p.jade-template {
+    margin-left: 1em;
+    font-size: 2em;
+}
+
+.camera-title {
+    display: flex;
+    align-items: center;
+}
+
+.italic-text {
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.camera-title hr {
+    height: 2.7px;
+    width: 50px;
+}
+
+.fa-brands {
+    background-color: #909090;
+    padding: 6px;
+}
+
+/* girl */
+
+.girl {
+    overflow: hidden;
+    position: relative;
+}
+
+.girl img {
+    width: 100%;
+    position: absolute;
+    transform: translateY(-7%);
+}
+
+/* bridge */
+
+.bridge-img img {
+    height: 380px;
+    object-fit: cover;
+}
+
+.bridge-description {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    padding-right: 5em;
+}
+
+#bridge-title {
+    margin-left: 0;
+}
+
+/* featured */
+
+.featured {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: 7em;
+}
+
+.featured div:nth-child(odd) img {
+    height: 300px;
+}
+
+.featured div:nth-child(even) img {
+    height: 380px;
+    z-index: 50;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* contact */
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+    padding-top: 4em;
+}
+
+.contact > p:first-child{
+    font-size: 3em;
+}
+
+.contact .italic-text {
+    text-align: center;
+    width: 840px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    width: 500px;
+}
+
+form input {
+    background-color: #efefef;
+    padding: 0.5em;
+    flex: 1;
+    border: 2px solid black;
+}
+
+input::placeholder, textarea::placeholder {
+    color: black;
+}
+
+textarea {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100px;
+    background-color: #efefef;
+    padding: 0.5em;
+    border: 2px solid black;
+}
+
+textarea::-webkit-scrollbar {
+    display: none;
+  }
+
+.email-subject {
+    display: flex;
+    gap: 2em;
+}
+
+button {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    padding: 0.5em 0;
+}
+
+footer {
+    font-size: 12px;
+    margin-top: auto;
+    margin-bottom: 2em;
+}
