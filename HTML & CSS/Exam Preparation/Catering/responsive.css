@@ -1,0 +1,36 @@
+@media (max-width: 600px) {
+    .w3-hide-small {
+        display: none;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #about {
+        display: flex;
+        justify-content: center;
+    }
+
+    #about .w3-hide-small {
+        display: none;
+    }
+
+    #about article:nth-child(2) {
+        width: 100%;
+    }
+
+    #menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #menu article {
+        width: 100%;
+    }
+}
