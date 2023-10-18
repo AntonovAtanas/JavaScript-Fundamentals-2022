@@ -48,7 +48,8 @@ header .logo img {
 
 .welcome,
 .find-jobs,
-.post-job {
+.post-job,
+.open-to-work {
     padding: 0 0 0 8.6em;
 }
 
@@ -172,4 +173,37 @@ form>p {
     border-radius: 15px;
     padding: 0.5em 1em;
     font-weight: bold;
+}
+
+/* open-to-work */
+
+.open-to-work {
+    display: flex;
+    align-items: center;
+    padding-top: 8em;
+    padding-right: 15em;
+    padding-bottom: 8em;
+    gap: 3em;
+    background-color: #FAF9F7;
+}
+
+.open-to-work-img img {
+    height: 450px;
+}
+
+.open-to-work-description {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 0 2em 0 0;
+}
+
+.open-to-work-description h2 {
+    color: #0A66C2;
+    font-size: 2.5em;
+    font-weight: 300;
+}
+
+.open-to-work-description p {
+    font-size: 18px;
 }
