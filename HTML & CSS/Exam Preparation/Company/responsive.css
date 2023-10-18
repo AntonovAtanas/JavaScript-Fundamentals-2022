@@ -1,0 +1,53 @@
+@media (max-width: 600px) {
+
+    .main-nav {
+        display: none;
+    }
+
+    .hero-head {
+        background-image: none;
+        background-color: black;
+        min-height: 650px;
+    }
+
+    .wrapper {
+        width: 100%;
+        padding: 1em;
+        text-align: center;
+    }
+
+    .wrapper h1 {
+        margin: 1em auto 1em auto;
+        width: 100%;
+        font-size: 2.5em;
+    }
+
+    .hero-head .goal {
+        max-width: none;
+    }
+
+    /* Content wrap */
+
+    .content-wrap {
+        flex-direction: column;
+        margin: 32px 0 0;
+    }
+
+    .col {
+        display: flex;
+        flex-direction: column
+    }
+
+    /* sitemap */
+
+    .main-foot .wrapper {
+        flex-direction: column;
+    }
+
+    /* footer */
+
+    .main-foot .bottom .copyright {
+        float: none;
+    }
+    
+}
