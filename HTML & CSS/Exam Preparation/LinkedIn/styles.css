@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/* header */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    padding: 0 10em 0 8em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo img {
+    height: 76px;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+
+.join {
+    font-size: 14px;
+    color: #555555;
+    cursor: pointer;
+}
+
+.sign-in {
+    font-size: 14px;
+    padding: 8px 24px;
+    color: #0A66C2;
+    border: 2px solid #0A66C2;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+/* main */
+
+.welcome,
+.find-jobs,
+.post-job {
+    padding: 0 0 0 8.6em;
+}
+
+/* welcome */
+
+.welcome {
+    display: flex;
+    height: 550px;
+}
+
+.welcome-content h1 {
+    font-size: 4em;
+    font-weight: 100;
+    color: #0A66C2;
+    margin-bottom: 0.2em;
+    line-height: 1.2;
+}
+
+.welcome-img img {
+    height: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 350px;
+}
+
+form input {
+    padding: 0.5em;
+    width: 350px;
+}
+
+form button {
+    all: unset;
+    background-color: #0A66C2;
+    color: white;
+    text-align: center;
+    border-radius: 15px;
+    padding: 0.6em;
+}
+
+.password {
+    position: relative;
+}
+
+form div>p {
+    font-size: 12px;
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+}
+
+form>p {
+    font-size: 14px;
+}
+
+/* find jobs */
+
+.find-jobs {
+    display: flex;
+    align-items: center;
+    background-color: #FAF9F7;
+    gap: 12em;
+    height: 350px;
+}
+
+.find-jobs h2 {
+    font-size: 2.5em;
+    font-weight: 300;
+    width: 320px;
+}
+
+.suggested-searches {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.suggested-searches p {
+    font-size: 12px;
+}
+
+.suggested-searches .cards-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    width: 70%;
+}
+
+.suggested-card {
+    background-color: #E6E5E4;
+    padding: 0.5em 1em;
+    border-radius: 15px;
+    font-weight: bold;
+    color: #656461;
+}
+
+/* post job */
+
+.post-job {
+    display: flex;
+    background-color: #F1ECE5;
+    height: 190px;
+    align-items: center;
+    gap: 7em;
+}
+
+.post-job h2 {
+    color: #B5482A;
+    font-size: 2.5em;
+    width: 400px;
+    font-weight: 300;
+}
+
+.post-job .post-job-button {
+    border: 1px solid #656461;
+    color: #656461;
+    border-radius: 15px;
+    padding: 0.5em 1em;
+    font-weight: bold;
+}
