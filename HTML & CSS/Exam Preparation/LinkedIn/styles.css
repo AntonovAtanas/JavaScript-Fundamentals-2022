@@ -49,7 +49,10 @@ header .logo img {
 .welcome,
 .find-jobs,
 .post-job,
-.open-to-work {
+.open-to-work,
+.connect,
+.join-content,
+footer {
     padding: 0 0 0 8.6em;
 }
 
@@ -167,7 +170,7 @@ form>p {
     font-weight: 300;
 }
 
-.post-job .post-job-button {
+.post-job-button {
     border: 1px solid #656461;
     color: #656461;
     border-radius: 15px;
@@ -206,4 +209,87 @@ form>p {
 
 .open-to-work-description p {
     font-size: 18px;
+}
+
+/* connect */
+
+.connect {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 2em;
+    padding-top: 5em;
+    padding-bottom: 5em;
+    padding-right: 15em;
+}
+
+.bullets-wrapper {
+    display: flex;
+    gap: 8em;
+}
+
+.connect .bullet {
+    width: 320px;
+}
+
+.connect .bullet img {
+    height: 150px;
+}
+
+.connect .bullet p{
+    font-size: 2em;
+}
+
+.connect .find-people {
+    flex: 0 0 auto;
+}
+
+/* join */
+
+.background-img {
+    position: relative;
+    cursor: default;
+}
+
+.join-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: start;
+    position: absolute;
+    top: 12%; 
+    z-index: 20; 
+}
+
+.join-content h2 {
+    color: #0A66C2;
+    font-size: 2.5em;
+    font-weight: 300;
+}
+
+.join-content .started-btn {
+    background-color: #0A66C2;
+    color: white;
+    border-radius: 15px;
+    padding: 8px 24px;
+    cursor: pointer;
+}
+
+/* footer */
+
+footer {
+    padding-top: 1em;
+    background-color: #FAF9F7;
+    display: flex;
+    gap: 10em;
+}
+
+.footer-logo {
+    height: 64px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }
