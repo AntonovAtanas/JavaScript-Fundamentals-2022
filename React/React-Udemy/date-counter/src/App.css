@@ -1,9 +1,11 @@
 .App {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
-.step {
+.step, .count {
   display: flex;
   align-items: center;
 }
